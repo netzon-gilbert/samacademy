@@ -1,0 +1,97 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(futuralt.ttf);
+}
+body{
+	font-family: 'Futural LT', san-serif, arial;
+	background: #eee;
+}
+.tool{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: #272728;
+	color: white;
+	font-size: 15px;
+	max-width: 100%;
+	min-width: 100%;
+	max-height: 44px;
+	min-height: 44px;
+	border: 1px solid black;
+	text-align: center;
+	overflow: hidden;
+}
+.data-content{
+	position: absolute;
+	top: 59px;
+	left: 0px;
+	max-width: 100%;
+	min-width: 100%;
+	max-height: 100%;
+	min-height: 100%;
+	text-align: center;
+}
+.data-content div{
+	position: relative;
+	max-width: 100%;
+	min-width: 100%;
+	max-height: 44px;
+	min-height: 44px;
+	font-size: 16px;
+	color: #4F5157;
+	font-weight: bold;
+	border-top: 1px solid #D1D4D5;
+	border-left: none;
+	border-right: none;
+}
+.content span{
+	position: relative;
+	margin: 10px;
+}
+.content-trials{
+	border-bottom: 1px solid #D1D4D5;
+	margin-bottom: 30px;
+}
+.content-last{
+	border-bottom: 1px solid #D1D4D5;
+}
+.type{
+	float: left;
+}
+.value{
+	float: right;
+	color: #7D878C;
+}
+.tool a{
+	position: relative;
+	top: 15px;
+	left:0px;
+}
+.tool-cancel{
+	float: left;
+	margin-left: 15px;
+}
+.tool-settings{
+	font-size: 18px;
+}
+.tool-save{
+	float: right;
+	margin-right: 30px;
+}
+.btn{
+	text-align: center;
+	position: relative;
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	background: #44BEF4;
+	color: white;
+	font-size: 18px;
+	max-width: 260px;
+	min-width: 260px;
+	max-height: 44px;
+	min-height: 44px;
+	border: none;
+	border-radius: 20px;
+	outline: none;
+}
