@@ -1,0 +1,138 @@
+@font-face {
+    src: url(OpenSans-Regular.ttf);
+}
+body{
+	font-family: 'Open Sans', san-serif, arial;
+	background: #EEEEEE;
+}
+.app-head, .app-body, .app-foot, #forgot_info{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.app-head{
+	top: 100px;
+	left: 0px;
+}
+.app-head h1, .app-head h3{
+	font-weight: lighter;
+}
+.app-head h1{
+	font-size: 32px;
+	color: #000;
+	padding-bottom: 18px;
+	margin-bottom: 0px;
+}
+.app-head h3{
+	font-size: 14px;
+	color: #333;
+}
+.app-body{
+	top: 178px;
+	left: 0px;
+	min-height: 250px;
+	min-width: 350px;
+	max-height: 250px;
+	max-width: 350px;
+
+	background: white;
+	box-shadow: 0px 1px 3px 0px rgba(0,0,0, 0.2);
+	padding-top: 25px;
+}
+.remember{
+	direction: ltr;
+	margin-left: 0px;
+	position: relative;
+	top: 0px;
+	left: -65px;
+}
+#email, #password{
+	color: #666;
+	min-height: 50px;
+	min-width: 280px;
+	max-height: 50px;
+	max-width: 280px;
+	border: transparent;
+	border-bottom: 1px solid #aaa;
+	background: transparent;
+	outline: none;
+	padding-left: 15px;
+}
+#email:active, #password:active{
+	border: transparent;
+	outline: none;
+}
+#email::placeholder, #password::placeholder{
+	color: #666;
+	font-size: 14px;
+}
+
+#login{
+	min-height: 40px;
+	min-width: 280px;
+	max-height: 40px;
+	max-width: 280px;
+
+	background: #1574A4;
+	border-radius: 3px;
+	border: none;
+	font-size: 16px;
+	color: #fff;
+	margin-top: 20px;
+	margin-bottom: 18px;
+}
+
+#forgot_info{
+	top: 198px;
+	left: 0px;
+}
+#forgot_info a{
+	color: #1673A5;
+}
+.app-foot{
+	top: 336px;
+	left: 0px;
+	padding-bottom: 40px;
+}
+.app-foot .app-logo{
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	background-image: url("../assets/logo.png");
+	background-size: 145px 20px;
+	min-width: 145px;
+	max-width: 145px;
+	min-height: 20px;
+	max-height: 20px;
+	margin-top: 10px;
+}
+.app-foot label{
+	font-size: 12px;
+	color: #333;
+	padding: 10px;
+}
+
+/* checkbox */
+
+input[type=checkbox]{
+	outline: 2px solid #1574A4;
+	visibility: hidden;
+}
+.remember-check{
+	position: relative;
+	top: 0px;
+	left: -50px;
+	border: 2px solid #1574A4;
+	color: transparent;
+	padding: 1px;
+	border-radius: 3px;
+}
+

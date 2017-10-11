@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/styles.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!--link rel="stylesheet" href="css/font-awesome.min.css" /-->
+	</head>
+
+	<body>
+		<div class="app-head" id="" >
+			<h1>MultiBit Vision Test</h1>
+			<h3>ADMINISTRATOR</h3>
+		</div>
+		
+		<div class="app-body" id="" >
+			<input type="text" class="" id="email" placeholder="E-mail" /><br />
+			<input type="password" class="" id="password" placeholder="Password" /><br />
+			<input type="button" class="" id="login" value="Log in" /><br />
+			<span class="fa fa-check remember-check" id="box"></span>
+			<label class="remember" id="remember"><input type="checkbox" class="" id="checkbox" /> Remember email</label>	
+		</div>
+		
+		<p id="forgot_info"><a href="">Forgot your password?</a></p>
+		
+		<div class="app-foot" id="" >
+			<label>powered by</label>
+			<div class="app-logo" id=""></div>
+		</div>
+		<script type="text/javascript" >
+			window.onload= function(){
+				var checkbox = document.getElementById("remember");
+				var hiddenCheck = document.getElementById("checkbox");
+				var box = document.getElementById("box");
+				checkbox.onmousedown = function(){
+					if(hiddenCheck.checked){
+						box.style.color="#1574A4";
+					}else{
+						box.style.color="transparent";
+					}
+				};
+			}
+		</script>
+	</body>
+</html>
