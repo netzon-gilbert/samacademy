@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/styles.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+
+	<body>
+		<div class="app-container" id="">
+			<div class="app-content1 app-content" id="">
+				<div class="icons" id="content1_icon1">
+				</div>
+				<div class="icons" id="content1_icon2">
+				</div>
+				<div class="icons" id="content1_icon3">
+				</div>
+				<div class="icons" id="content1_icon4">
+				</div>
+			</div>
+			<div class="app-content2 app-content" id="">
+				<div class="icons" id="content2_icon1">
+				</div>
+			</div>
+			<div class="app-content3 app-content" id="">
+				<div class="" id="content3_texts">
+					<span class="content3-text1">Lorem Ipsum Dolor<br /> Sit Amet!</span>
+					<p>Clast aptent taciti sociosqu ad, consectetur adipiscing elite.<br /> DOnec sit amet ullamcoper massa, eget finibus augue. Mauris<br/> semper neque et risus suscipt posuere.</p>
+				</div>
+				<div class="icons" id="content3_icon1">
+				</div>
+			</div>
+			<div class="app-content4 app-content" id="">
+				<p class="content4 content4_p1">Lorem ipsum dolor sit amet, consectetur adipiscing elit:</p>
+				<label class="content4 content4-l1">
+					Namn<br />
+					<input type="text" class="short-input" placeholder="John" />
+					<input type="text" class="short-input" placeholder="Smith" />
+				</label>
+				<label class="content4 content4-l2">
+					Tio forsta siffroma i din producktnyckel<br />
+					<input type="text" class="long-input" placeholder="00000-00000-xxxxx-xxxxx" />
+				</label>
+				<label class="content4 content4-l3">
+					E-post<br />
+					<input type="text" class="long-input" placeholder="someone@example.com" />
+				</label>
+				<label class="content4 content4-l4">
+					Bekrafta e-post<br />
+					<input type="text" class="long-input" placeholder="someone@example.com" />
+				</label>
+				<label class="content4 content4-l5" id="remember">
+					<span class="fa fa-check remember-check" id="box"></span>
+					<input type="checkbox" class="" id="checkbox" /> Jag har last och accepterar <a>vilkoren</a>.
+				</label>
+				<input type="button" class="content4 content4-submit" value="Skicka" />
+			</div>
+			<div class="app-content5 app-content" id="">
+				<div class="icons" id="content5_icon1">
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" >
+			window.onload= function(){
+				var checkbox = document.getElementById("remember");
+				var hiddenCheck = document.getElementById("checkbox");
+				var box = document.getElementById("box");
+				function checkFunc(){
+					if(hiddenCheck.checked){
+						box.style.color="#fff";
+					}else{
+						box.style.color="transparent";
+					}
+				}
+				checkFunc();
+				checkbox.onmousedown = function(){
+					checkFunc();
+				};
+			}
+		</script>
+	</body>
+</html>
