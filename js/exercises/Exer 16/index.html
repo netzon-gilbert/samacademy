@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exer 16</title>
+    <style rel="stylesheet" type="text/css">
+        body{
+            font-family: arial;
+        }
+        canvas{
+            margin: 100px;
+            box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+        .var, .variable, canvas{
+            position: absolute;
+        }
+        .var{
+            margin-left: 100px;
+        }
+        .variable, canvas{
+            top: 0px;
+            left: 0px;
+        }
+        .var1{
+            top: 500px;
+            left: 400px;
+        }
+         .var2{
+            top: 500px;
+            left: 100px;
+        }
+    </style>
+    <script src="exer.js"></script>
+</head>
+<body>
+    <!--link type="text/css" rel="stylesheet" href="styles.css" /-->
+    <canvas id="canvas" width="1000" height="500">canvas not supported</canvas>
+    <div class="variable">
+        <div class="var2 var">
+            <label>radius</label><br />
+            <input type="range" class="" id="radius" /><br />
+            <label id="rout">0</label>
+        </div>
+        <div class="var1 var">
+            <label>height</label><br />
+            <input type="range" class="" id="height" /><br />
+            <label id="hout">0</label>
+        </div>
+    </div>
+</body>
+</html>
