@@ -1,0 +1,107 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(proxima-nova.otf);
+}
+body{
+	background: #444444;
+	font-family: 'Proxima Nova Alt Lt', san-serif, arial;
+}
+.app-body, .app-head, .app-foot{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.app-box{
+	position: absolute;
+	min-height: 318px;
+	min-width: 200px;
+	max-height: 318px;
+	max-width: 200px;
+	border-radius:  8px;
+
+	background: white;
+}
+.app-body{
+	position: relative;
+	min-height: 325px;
+	min-width: 100%;
+	max-height: 325px;
+	max-width: 100%;
+	overflow-x: scroll;
+	overflow-y: hidden; 
+}
+.window{
+	position: relative;
+	margin: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	min-height: 325px;
+	min-width: 860px;
+	max-height: 325px;
+	max-width: 860px;
+}
+#app_box1{
+	top: 0px;
+	left: 0px;
+	background: #f28484;
+}
+#app_box2{
+	top: 0px;
+	left: 220px;
+	background: #ffd46e;
+}
+#app_box3{
+	top: 0px;
+	left: 440px;
+	background: #6dd1f2;
+}
+#app_box4{
+	top: 0px;
+	left: 660px;
+	background: #ff9657;
+}
+.photo{
+	padding-top: 40px;
+	padding-bottom: 22px;
+}
+.text-input{
+	min-height: 44px;
+	min-width: 156px;
+	max-height: 44px;
+	max-width: 156px;
+	border-radius: 5px;
+	border: none;
+	padding-left: 15px;
+}
+.text-input::placeholder{
+	font-size: 14px;
+	color: gray;
+}
+h3{
+	color: white;
+	font-weight: lighter;
+	margin-top: 0px;
+	margin-bottom: 32px;
+}
+.app-head h2{
+	color: white;
+	font-size: 20px;
+	font-weight: lighter;
+	margin-top: 58px;
+	margin-bottom: 44px;
+}
+.app-foot{
+	margin-top: 55px;
+}
+.app-foot input[type="button"]{
+	min-height: 50px;
+	min-width: 222px;
+	max-height: 50px;
+	max-width: 222px;
+	border-radius: 5px;
+	border: none;
+	background: #4D4DFF;
+	color: white;
+	font-size: 18px;
+	font-weight: lighter;
+}
