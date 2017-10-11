@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exer 15</title>
+</head>
+<body>
+    <script src="exer.js"></script>
+    <link type="text/css" rel="stylesheet" href="styles.css" />
+    <header></header>
+    <article>
+        <section>
+            <p>
+                <b>
+                    Write a JavaScript function to truncates a string if it is longer than the specified number of characters. Truncated strings will end with a translatable ellipsis sequence ("…") (by default) or specified characters. A tooltip of all the text appears when it's ellipsized.
+                </b>
+            </p>
+            <p>
+                Test Data :
+                <br>
+                text_truncate('We are doing JS string exercises.');
+                <br>
+                text_truncate('We are doing JS string exercises.',19);
+                <br>
+                text_truncate('We are doing JS string exercises.',15,'!!');
+                <br>
+                "We are doing JS string exercises."
+                <br>
+                "We are doing JS ..."
+                <br>
+                "We are doing !!"
+            </p>
+        </section>
+        <section><button onclick="run()">Run</button></section>
+        <section>
+            <p>Output Here:</p>
+            <div id="output">
+                <!-- TODO: Add elements here if necessary -->
+            </div>
+        </section>
+    </article>
+</body>
+</html>
