@@ -1,0 +1,16 @@
+.tooltip{
+	box-shadow: 1px 0px 3px 0px rgba(0,0,0, 0.2);
+	padding: 10px;
+	border-radius: 3px;
+	visibility: hidden;
+	position: relative;
+	top: -20px;
+	left: -40px;
+	font-family: arial;
+	color: gray;
+	background: white;
+	font-size: 12px;
+}
+p:hover span{
+	visibility: visible;
+}
