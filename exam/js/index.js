@@ -48,25 +48,25 @@ var CalculatorClass = function () {
 
     this.display = function () {
         this.fetchInput();
-        alert(
+       /* alert(
             this.inputValues['price'] + '' +
             this.inputValues['income'] + '' +
             this.inputValues['type'] + '' +
             this.inputValues['term']
-        );
+        );*/
 
-        this.outCart['rent_income'].innerHTML = 'test';
-        this.outCart['agency_fees'].innerHTML = 'test';
-        this.outCart['yearly_total'].innerHTML = 'test';
-        this.outCart['after_term'].innerHTML = 'test';
-        this.outCart['profit_OT'].innerHTML = 'test';
-        this.outCart['profit_AT'].innerHTML = 'test';
-        this.outCart['grand_PFT'].innerHTML = 'test';
-        this.outCart['return_invest'].innerHTML = 'test';
+        this.outCart['rent_income'].innerHTML = this.inputValues['price'];
+        this.outCart['agency_fees'].innerHTML = this.inputValues['price'];
+        this.outCart['yearly_total'].innerHTML = this.inputValues['price'];
+        this.outCart['after_term'].innerHTML = this.inputValues['price'];
+        this.outCart['profit_OT'].innerHTML = this.inputValues['price'];
+        this.outCart['profit_AT'].innerHTML = this.inputValues['price'];
+        this.outCart['grand_PFT'].innerHTML = this.inputValues['price'];
+        this.outCart['return_invest'].innerHTML = this.inputValues['price'];
     };
 
     this.render = function () {
-
+        this.display();
     };
 };
 
@@ -74,11 +74,13 @@ var calculator = new CalculatorClass();
 
 window.onload = function () {
     calculator.init();
-    alert('good');
+    setInterval(function () {
+        calculator.render();
+    }, 100);
+    //alert('good');
 };
 
 function shortTerm() {
     alert('Comming soon.');
-    calculator.display();
 }
 
