@@ -1,0 +1,72 @@
+/* icons styles */
+.icon{
+    background-image: url("../assets/images.png");
+}
+.icon-arrow-head{
+
+}
+.icon-curly-arrow{
+
+}
+.icon-head-image{
+    background-position: 0px 0px;
+    max-width: 767px;
+    min-width: 767px;
+    max-height: 220px;
+    min-height: 220px;
+}
+.icon-app-icon{
+    background-position: -170px -320px;
+    max-width: 125px;
+    min-width: 125px;
+    max-height: 125px;
+    min-height: 125px;
+}
+
+/* apps styles in the heading */
+
+.app{
+    position: relative;
+    top: -8px;
+    left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 767px;
+    min-width: 767px;
+    min-height: 100%;
+}
+.head-image, .head-icon{
+    position: absolute;
+}
+.head-image{
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    box-shadow: 2px 3px 4px 3px rgba(0, 0, 0, 0.2);
+}
+.head-icon{
+    z-index: 2;
+    top: 70px;
+    left: 320px;
+    opacity: 0.8;
+}
+.link{
+    color: #A09E9C;
+    font-size: 16px;
+    margin: 20px;
+}
+.link-active{
+    color: black;
+}
+.link:hover{
+    color: black;
+}
+.browse{
+    position: relative;
+    top: 10px;
+    left: 0px;
+    z-index: 10;
+    float: right;
+}
