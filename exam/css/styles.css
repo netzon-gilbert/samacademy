@@ -3,7 +3,11 @@
     background-image: url("../assets/images.png");
 }
 .icon-arrow-head{
-
+    background-position: -187px -750px;
+    max-width: 48px;
+    min-width: 48px;
+    max-height: 26px;
+    min-height: 26px;
 }
 .icon-curly-arrow{
 
@@ -24,7 +28,15 @@
 }
 
 /* apps styles in the heading */
-
+.app-head, .app-body{
+    position: relative;
+}
+.app-head{
+    max-width: 767px;
+    min-width: 767px;
+    max-height: 220px;
+    min-height: 220px;
+}
 .app{
     position: relative;
     top: -8px;
@@ -69,4 +81,68 @@
     left: 0px;
     z-index: 10;
     float: right;
+}
+
+/* app-body css design */
+.inputs{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.inputs label{
+    color: #A09393;
+}
+.inputs select {
+   text-align: center;
+}
+.inputs h2{
+    color: #333333;
+}
+.inputs select, .inputs input[type="text"], .inputs input[type="number"]{
+    box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+    white-space: pre;
+    -webkit-rtl-ordering: logical;
+
+    width: 240px;
+    height: 40px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #000;
+    font-size: 24px;
+    color: #333;
+    padding: 0 5px;
+    text-align: center;
+    -webkit-appearance: none;
+    appearance: none;
+    background: url(../assets/dropdown_img.png) 100% 100% no-repeat #eee;
+    font-family: Avenir;
+}
+.input-box{
+    padding: 20px;
+    margin: 20px;
+}
+.bot-box1, .bot-box2{
+    position: absolute;
+}
+.bot-box1{
+    top: 200px;
+    left: 450px;
+}
+.bot-box2{
+    top: 200px;
+    left: 0px;
+}
+#arrow1{
+    position: relative;
+    top: 0px;
+    left: 100px;
+    margin-bottom: 30px;
+}
+#arrow2{
+    position: relative;
+    top: 100px;
+    left: 90px;
+    margin-bottom: 30px;
 }

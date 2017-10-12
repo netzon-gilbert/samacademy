@@ -3,234 +3,234 @@
     src: url(OpenSans-Regular.ttf);
 }
 body{
-	font-family: 'Open Sans', san-serif, arial;
-	font-weight: lighter;
+    font-family: 'Open Sans', san-serif, arial;
+    font-weight: lighter;
 }
 .app-container{
-	position: relative;
-	margin-right: auto;
-	margin-left: auto;
-	min-height: 1070px;
-	min-width: 950px;
-	max-height: 1070px;
-	max-width: 950px;
-	border: none;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 1070px;
+    min-width: 950px;
+    max-height: 1070px;
+    max-width: 950px;
+    border: none;
 }
 .app-content{
-	position: relative;
-	margin-bottom: 5px;
-	border: none;
+    position: relative;
+    margin-bottom: 5px;
+    border: none;
 }
 .app-content1{
-	max-width: 950px;
-	min-width: 950px;
-	max-height: 140px;
-	min-height: 140px;
-	background: #DB3B00;
-	
+    max-width: 950px;
+    min-width: 950px;
+    max-height: 140px;
+    min-height: 140px;
+    background: #DB3B00;
+
 }
 .app-content2{
-	max-width: 950px;
-	min-width: 950px;
-	max-height: 145px;
-	min-height: 145px;
+    max-width: 950px;
+    min-width: 950px;
+    max-height: 145px;
+    min-height: 145px;
 }
 .app-content3{
-	max-width: 950px;
-	min-width: 950px;
-	max-height: 345px;
-	min-height: 345px;
-	background: #DB3B00;
+    max-width: 950px;
+    min-width: 950px;
+    max-height: 345px;
+    min-height: 345px;
+    background: #DB3B00;
 }
 .app-content4{
-	max-width: 950px;
-	min-width: 950px;
-	max-height: 360px;
-	min-height: 360px;
-	background: #595959;
-	color: #fff;
+    max-width: 950px;
+    min-width: 950px;
+    max-height: 360px;
+    min-height: 360px;
+    background: #595959;
+    color: #fff;
 }
 .app-content5{
-	max-width: 950px;
-	min-width: 950px;
-	max-height: 50px;
-	min-height: 50px;
-	background: #111111;
+    max-width: 950px;
+    min-width: 950px;
+    max-height: 50px;
+    min-height: 50px;
+    background: #111111;
 }
 .icons{
-	position: absolute;
-	background-image: url("../assets/sprite.png");
-	min-width: 145px;
-	max-width: 145px;
-	min-height: 40px;
-	max-height: 40px;
-	border: 1px solid white;
-	overflow: hidden;
+    position: absolute;
+    background-image: url("../assets/sprite.png");
+    min-width: 145px;
+    max-width: 145px;
+    min-height: 40px;
+    max-height: 40px;
+    border: 1px solid white;
+    overflow: hidden;
 }
 
 /* content1 icons*/
 #content1_icon1, #content1_icon2, #content1_icon3, #content1_icon4{
-	margin-top: 50px;
-	border: none;
+    margin-top: 50px;
+    border: none;
 }
 #content1_icon1{
-	left: 0px;
-	background-position: 0px 0px;
-	min-width: 192px;
-	max-width: 192px;
-	min-height: 42px;
-	max-height: 42px;
-	margin-left: 40px;
+    left: 0px;
+    background-position: 0px 0px;
+    min-width: 192px;
+    max-width: 192px;
+    min-height: 42px;
+    max-height: 42px;
+    margin-left: 40px;
 }
 #content1_icon2{
-	left: 666px;
-	background-position: -642px 0px;
-	min-width: 52px;
-	max-width: 52px;
-	min-height: 46px;
-	max-height: 46px;
+    left: 666px;
+    background-position: -642px 0px;
+    min-width: 52px;
+    max-width: 52px;
+    min-height: 46px;
+    max-height: 46px;
 }
 #content1_icon3{
-	left: 746px;
-	background-position: -725px 0px;
-	min-width: 84px;
-	max-width: 84px;
-	min-height: 46px;
-	max-height: 46px;
+    left: 746px;
+    background-position: -725px 0px;
+    min-width: 84px;
+    max-width: 84px;
+    min-height: 46px;
+    max-height: 46px;
 }
 #content1_icon4{
-	left: 864px;
-	background-position: -837px 0px;
-	min-width: 46px;
-	max-width: 46px;
-	min-height: 46px;
-	max-height: 46px;
+    left: 864px;
+    background-position: -837px 0px;
+    min-width: 46px;
+    max-width: 46px;
+    min-height: 46px;
+    max-height: 46px;
 }
 
 /* content2 icons*/
 #content2_icon1{
-	border: none;
-	top: 0px;
-	left: 0px;
-	background-position: -7px -94px;
-	min-width: 945px;
-	max-width: 945px;
-	min-height: 149px;
-	max-height: 149px;
+    border: none;
+    top: 0px;
+    left: 0px;
+    background-position: -7px -94px;
+    min-width: 945px;
+    max-width: 945px;
+    min-height: 149px;
+    max-height: 149px;
 }
 /* content3 icons and texts*/
 #content3_icon1{
-	border: none;
-	top: 50px;
-	left: 655px;
-	background-position: 0px -267px;
-	min-width: 255px;
-	max-width: 255px;
-	min-height: 255px;
-	max-height: 255px;
+    border: none;
+    top: 50px;
+    left: 655px;
+    background-position: 0px -267px;
+    min-width: 255px;
+    max-width: 255px;
+    min-height: 255px;
+    max-height: 255px;
 }
 #content3_texts{
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	padding: 0px;
-	color: white;
-	margin-left: 40px;
-	margin-top: 20px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+    color: white;
+    margin-left: 40px;
+    margin-top: 20px;
 }
 .content3-text1{
-	position: relative;
-	top: 0px;
-	left: 0px;
-	font-size: 60px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    font-size: 60px;
 }
 #content3_texts p{
-	margin-top: 60px;
+    margin-top: 60px;
 }
 
 /* content4 */
 .content4_p1{
-	font-size: 20px;
-	font-weight: lighter;	
+    font-size: 20px;
+    font-weight: lighter;
 }
 .long-input{
-	max-width: 400px;
-	min-width: 400px;
+    max-width: 400px;
+    min-width: 400px;
 }
 .short-input{
-	max-width: 180px;
-	min-width: 180px;
+    max-width: 180px;
+    min-width: 180px;
 }
 .content4 input[type="text"]{
-	border: 1px solid #bababa;
-	background: transparent;
-	max-height: 40px;
-	min-height: 40px;
-	color: white;
-	padding-left: 15px;
-	padding-right: 15px;
+    border: 1px solid #bababa;
+    background: transparent;
+    max-height: 40px;
+    min-height: 40px;
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .content4 input[type="text"]::placeholder{
-	color: #fff;
-	font-size: 15px;
+    color: #fff;
+    font-size: 15px;
 }
 .content4-submit{
-	min-width: 80px;
-	max-width: 80px;
-	min-height: 40px;
-	max-height: 40px;
-	background: #DB3B00;
-	border: none;
-	color: white;
-	font-size: 15px;
-	top: 280px;
-	left: 795px;
+    min-width: 80px;
+    max-width: 80px;
+    min-height: 40px;
+    max-height: 40px;
+    background: #DB3B00;
+    border: none;
+    color: white;
+    font-size: 15px;
+    top: 280px;
+    left: 795px;
 }
 .content4{
-	position: absolute;
-	margin-left: 35px;
+    position: absolute;
+    margin-left: 35px;
 }
 .content4-l1{
-	top: 80px;
-	left: 0px;
+    top: 80px;
+    left: 0px;
 }
 .content4-l2{
-	top: 170px;
-	left: 0px;
+    top: 170px;
+    left: 0px;
 }
 .content4-l3{
-	top: 80px;
-	left: 445px;
+    top: 80px;
+    left: 445px;
 }
 .content4-l4{
-	top: 170px;
-	left: 445px;
+    top: 170px;
+    left: 445px;
 }
 .content4-l5{
-	top: 250px;
-	left: 445px;
+    top: 250px;
+    left: 445px;
 }
 input[type=checkbox]{
-	outline: 2px solid #1574A4;
-	visibility: hidden;
+    outline: 2px solid #1574A4;
+    visibility: hidden;
 }
 .remember-check{
-	position: relative;
-	top: 0px;
-	left: 0px;
-	border: 1px solid #fff;
-	color: transparent;
-	padding: 1px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border: 1px solid #fff;
+    color: transparent;
+    padding: 1px;
 }
 
 /* content5 */
 #content5_icon1{
-	border: none;
-	top: 15px;
-	left: 828px;
-	background-position: -377px -407px;
-	min-width: 82px;
-	max-width: 82px;
-	min-height: 19px;
-	max-height: 19px;
+    border: none;
+    top: 15px;
+    left: 828px;
+    background-position: -377px -407px;
+    min-width: 82px;
+    max-width: 82px;
+    min-height: 19px;
+    max-height: 19px;
 }
