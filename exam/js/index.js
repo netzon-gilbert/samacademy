@@ -35,17 +35,17 @@ var CalculatorClass = function () {
 
     this.capitalApp = new OutputClass([
             'arrow2',
-            'foot-box4'
+            'foot-total2',
+            'foot-box4',
+            'arrow5'
     ]);
 
     this.grandTotal = new OutputClass([
             'foot-total1',
-            'foot-total2',
             'foot-total3',
             'foot-total4',
             'curly-arrow',
             'arrow4',
-            'arrow5'
      ]);
 
     this.footerText = new OutputClass([
@@ -68,8 +68,12 @@ var CalculatorClass = function () {
         this.outCart['grand_PFT'] = document.getElementById('grand_PFT');
         this.outCart['return_invest'] = document.getElementById('return_invest');
 
+        calculator.rentalYeld.hide();
+        calculator.capitalApp.hide();
+        calculator.grandTotal.hide();
+        calculator.footerText.hide();
+
         this.fetchInput();
-        this.capitalApp.hide();
     };
 
     this.fetchInput = function () {
@@ -96,31 +100,31 @@ var CalculatorClass = function () {
     };
 
     this.filterValues = function () {
-        if(!this.inputValues['price'] == ''){
+        if (!this.inputValues['price'] == ''){
             this.filtered['price'] = parseInt(this.inputValues['price']);
-        }else{
+        } else{
             this.filtered['price'] = null;
         }
 
-        if(!this.cart['income'].selectedIndex == 0){
+        if (!this.cart['income'].selectedIndex == 0){
             var temp = this.inputValues['income'];
                 temp = temp.substring(0, temp.length - 1);
             this.filtered['income'] = parseInt(temp);
-        }else{
+        } else {
             this.filtered['income'] = null;
         }
 
-        if(!this.cart['term'].selectedIndex == 0){
+        if (!this.cart['term'].selectedIndex == 0) {
             this.filtered['term'] = parseInt(this.inputValues['term']);
-        }else{
+        } else {
             this.filtered['term'] = null;
         }
 
-        if(!this.cart['capital'].selectedIndex == 0){
+        if (!this.cart['capital'].selectedIndex == 0) {
             var temp = this.inputValues['capital'];
                 temp = temp.substring(0, temp.length - 1);
             this.filtered['capital'] = parseInt(temp);
-        }else{
+        } else {
             this.filtered['capital'] = null;
         }
 
@@ -138,6 +142,42 @@ var CalculatorClass = function () {
         this.outCart['profit_AT'].innerHTML = this.inputValues['price'];
         this.outCart['grand_PFT'].innerHTML = this.inputValues['price'];
         this.outCart['return_invest'].innerHTML = this.inputValues['price'];
+
+        // yeld
+        if (
+            this.filtered['price'] >= 600 &&
+            this.filtered['term'] !== null &&
+            this.filtered['income'] !== null
+        ) {
+            calculator.rentalYeld.show();
+        } else {
+            calculator.rentalYeld.hide();
+        }
+
+        // appreciation
+        if (
+            this.filtered['price'] !== null &&
+            this.filtered['capital'] !== null &&
+            this.filtered['term'] !== null
+        ) {
+            calculator.capitalApp.show();
+        } else {
+            calculator.capitalApp.hide();
+        }
+
+        // grand
+        if (
+            this.filtered['price'] >= 600 &&
+            this.filtered['term'] !== null &&
+            this.filtered['capital'] !== null &&
+            this.filtered['income'] !== null
+        ) {
+            calculator.grandTotal.show();
+            calculator.footerText.show();
+        } else {
+            calculator.grandTotal.hide();
+            calculator.footerText.hide();
+        }
     };
 
     this.refresh = function () {
