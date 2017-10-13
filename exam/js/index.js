@@ -30,7 +30,9 @@ var CalculatorClass = function () {
             'arrow3',
             'foot-box1',
             'foot-box2',
-            'foot-box3'
+            'foot-total1',
+            'foot-box3',
+            'arrow4'
     ]);
 
     this.capitalApp = new OutputClass([
@@ -41,11 +43,9 @@ var CalculatorClass = function () {
     ]);
 
     this.grandTotal = new OutputClass([
-            'foot-total1',
             'foot-total3',
             'foot-total4',
             'curly-arrow',
-            'arrow4',
      ]);
 
     this.footerText = new OutputClass([
@@ -150,10 +150,21 @@ var CalculatorClass = function () {
             this.filtered['term'] !== null &&
             this.filtered['income'] !== null
         ) {
+            var rentalIncome = Math.round(
+                    this.filtered['price'] *
+                    this.filtered['term'] *
+                    (this.filtered['income'] / 100)
+                );
+
             calculator.rentalYeld.show();
-            this.outCart['rent_income'].innerHTML = 'ok';
-            this.outCart['agency_fees'].innerHTML = 'ok';
-            this.outCart['yearly_total'].innerHTML = 'ok';
+            this.outCart['rent_income'].innerHTML = this.filtered['price'] -
+                                                    rentalIncome;
+
+            this.outCart['agency_fees'].innerHTML = Math.round(rentalIncome * 0.25);
+            this.outCart['yearly_total'].innerHTML = rentalIncome *
+                                                    this.filtered['price'];
+            this.outCart['profit_OT'].innerHTML = this.filtered['term'] *
+                                                this.filtered['price'];
         } else {
             calculator.rentalYeld.hide();
         }
@@ -183,11 +194,16 @@ var CalculatorClass = function () {
             this.filtered['capital'] !== null &&
             this.filtered['income'] !== null
         ) {
+            var rentalInc = Math.round(
+                    this.filtered['price'] *
+                    this.filtered['term'] *
+                    (this.filtered['income'] / 100)
+            );
             calculator.grandTotal.show();
             calculator.footerText.show();
-            this.outCart['profit_OT'].innerHTML = 'ok';
-            this.outCart['grand_PFT'].innerHTML = 'ok';
-            this.outCart['return_invest'].innerHTML = 'ok';
+            this.outCart['grand_PFT'].innerHTML = rentalInc * 1542;
+            this.outCart['return_invest'].innerHTML = Math.round((rentalInc * 1542 )/
+                                                    (100*this.filtered['price'])) + '%';
         } else {
             calculator.grandTotal.hide();
             calculator.footerText.hide();
