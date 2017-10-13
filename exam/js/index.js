@@ -129,19 +129,20 @@ var CalculatorClass = function () {
         }
 
     };
+    this.calcProfitVAT = function (terms, price, percent) {
+        var temp = 0,
+            tempPrice = price;
+
+        for (var i = 1; i <= terms; i++) {
+            temp = tempPrice + (tempPrice * (percent / 100));
+            tempPrice = temp;
+        }
+        return tempPrice;
+    };
 
     this.display = function () {
         this.fetchInput();
         this.filterValues();
-
-        this.outCart['rent_income'].innerHTML = this.inputValues['price'];
-        this.outCart['agency_fees'].innerHTML = this.inputValues['price'];
-        this.outCart['yearly_total'].innerHTML = this.inputValues['price'];
-        this.outCart['after_term'].innerHTML = this.inputValues['price'];
-        this.outCart['profit_OT'].innerHTML = this.inputValues['price'];
-        this.outCart['profit_AT'].innerHTML = this.inputValues['price'];
-        this.outCart['grand_PFT'].innerHTML = this.inputValues['price'];
-        this.outCart['return_invest'].innerHTML = this.inputValues['price'];
 
         // yeld
         if (
@@ -150,6 +151,9 @@ var CalculatorClass = function () {
             this.filtered['income'] !== null
         ) {
             calculator.rentalYeld.show();
+            this.outCart['rent_income'].innerHTML = 'ok';
+            this.outCart['agency_fees'].innerHTML = 'ok';
+            this.outCart['yearly_total'].innerHTML = 'ok';
         } else {
             calculator.rentalYeld.hide();
         }
@@ -160,7 +164,14 @@ var CalculatorClass = function () {
             this.filtered['capital'] !== null &&
             this.filtered['term'] !== null
         ) {
+            var vat = Math.round(this.calcProfitVAT(
+                            this.filtered['term'],
+                            this.filtered['price'],
+                            this.filtered['capital']
+                ));
             calculator.capitalApp.show();
+            this.outCart['after_term'].innerHTML = vat;
+            this.outCart['profit_AT'].innerHTML = vat - this.filtered['price'];
         } else {
             calculator.capitalApp.hide();
         }
@@ -174,6 +185,9 @@ var CalculatorClass = function () {
         ) {
             calculator.grandTotal.show();
             calculator.footerText.show();
+            this.outCart['profit_OT'].innerHTML = 'ok';
+            this.outCart['grand_PFT'].innerHTML = 'ok';
+            this.outCart['return_invest'].innerHTML = 'ok';
         } else {
             calculator.grandTotal.hide();
             calculator.footerText.hide();
@@ -198,10 +212,6 @@ window.onload = function () {
 
 function shortTerm() {
 
-    calculator.rentalYeld.hide();
-    calculator.capitalApp.show();
-    calculator.grandTotal.hide();
-    calculator.footerText.hide();
     alert('Comming soon.');
 }
 
