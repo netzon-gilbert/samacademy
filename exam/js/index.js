@@ -1,3 +1,23 @@
+var OutputClass = function (nput) {
+    this.self = nput;
+
+    this.init = function () {
+
+    };
+
+    this.hide = function () {
+        this.self.forEach(function (value, index, nput){
+            document.getElementById(value).style.visibility = 'hidden';
+        });
+    };
+
+    this.show = function () {
+         this.self.forEach(function (value, index, nput){
+            document.getElementById(value).style.visibility = 'visible';
+        });
+    };
+};
+
 var CalculatorClass = function () {
 
     this.cart = [];
@@ -5,6 +25,32 @@ var CalculatorClass = function () {
 
     this.inputValues = [];
     this.filtered = [];
+
+    this.rentalYeld = new OutputClass([
+            'arrow3',
+            'foot-box1',
+            'foot-box2',
+            'foot-box3'
+    ]);
+
+    this.capitalApp = new OutputClass([
+            'arrow2',
+            'foot-box4'
+    ]);
+
+    this.grandTotal = new OutputClass([
+            'foot-total1',
+            'foot-total2',
+            'foot-total3',
+            'foot-total4',
+            'curly-arrow',
+            'arrow4',
+            'arrow5'
+     ]);
+
+    this.footerText = new OutputClass([
+            'footer'
+     ]);
 
     this.init = function () {
         this.cart['price'] = document.getElementById('price');
@@ -23,6 +69,7 @@ var CalculatorClass = function () {
         this.outCart['return_invest'] = document.getElementById('return_invest');
 
         this.fetchInput();
+        this.capitalApp.hide();
     };
 
     this.fetchInput = function () {
@@ -77,23 +124,11 @@ var CalculatorClass = function () {
             this.filtered['capital'] = null;
         }
 
-        alert(
-            this.filtered['price'] +", "+
-            this.filtered['income'] +", "+
-            this.filtered['term'] +", "+
-            this.filtered['capital']
-        );
-        //alert(this.inputValues['income']);
     };
 
     this.display = function () {
         this.fetchInput();
-       /* alert(
-            this.inputValues['price'] + '' +
-            this.inputValues['income'] + '' +
-            this.inputValues['type'] + '' +
-            this.inputValues['term']
-        );*/
+        this.filterValues();
 
         this.outCart['rent_income'].innerHTML = this.inputValues['price'];
         this.outCart['agency_fees'].innerHTML = this.inputValues['price'];
@@ -122,7 +157,11 @@ window.onload = function () {
 };
 
 function shortTerm() {
+
+    calculator.rentalYeld.hide();
+    calculator.capitalApp.show();
+    calculator.grandTotal.hide();
+    calculator.footerText.hide();
     alert('Comming soon.');
-    calculator.filterValues();
 }
 
