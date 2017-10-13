@@ -4,13 +4,14 @@ var CalculatorClass = function () {
     this.outCart = [];
 
     this.inputValues = [];
-    this.calculated = [];
+    this.filtered = [];
 
     this.init = function () {
         this.cart['price'] = document.getElementById('price');
         this.cart['income'] = document.getElementById('yeld');
         this.cart['type'] = document.getElementById('type');
         this.cart['term'] = document.getElementById('term');
+        this.cart['capital'] = document.getElementById('capital');
 
         this.outCart['rent_income'] = document.getElementById('rent_income');
         this.outCart['agency_fees'] = document.getElementById('agency_fees');
@@ -40,10 +41,49 @@ var CalculatorClass = function () {
                                     .options[this.cart['term']
                                     .selectedIndex]
                                     .value;
+
+        this.inputValues['capital'] = this.cart['capital']
+                                    .options[this.cart['capital']
+                                    .selectedIndex]
+                                    .value;
     };
 
     this.filterValues = function () {
+        if(!this.inputValues['price'] == ''){
+            this.filtered['price'] = parseInt(this.inputValues['price']);
+        }else{
+            this.filtered['price'] = null;
+        }
 
+        if(!this.cart['income'].selectedIndex == 0){
+            var temp = this.inputValues['income'];
+                temp = temp.substring(0, temp.length - 1);
+            this.filtered['income'] = parseInt(temp);
+        }else{
+            this.filtered['income'] = null;
+        }
+
+        if(!this.cart['term'].selectedIndex == 0){
+            this.filtered['term'] = parseInt(this.inputValues['term']);
+        }else{
+            this.filtered['term'] = null;
+        }
+
+        if(!this.cart['capital'].selectedIndex == 0){
+            var temp = this.inputValues['capital'];
+                temp = temp.substring(0, temp.length - 1);
+            this.filtered['capital'] = parseInt(temp);
+        }else{
+            this.filtered['capital'] = null;
+        }
+
+        alert(
+            this.filtered['price'] +", "+
+            this.filtered['income'] +", "+
+            this.filtered['term'] +", "+
+            this.filtered['capital']
+        );
+        //alert(this.inputValues['income']);
     };
 
     this.display = function () {
@@ -65,7 +105,7 @@ var CalculatorClass = function () {
         this.outCart['return_invest'].innerHTML = this.inputValues['price'];
     };
 
-    this.render = function () {
+    this.refresh = function () {
         this.display();
     };
 };
@@ -73,14 +113,16 @@ var CalculatorClass = function () {
 var calculator = new CalculatorClass();
 
 window.onload = function () {
+
     calculator.init();
     setInterval(function () {
-        calculator.render();
+        calculator.refresh();
     }, 100);
-    //alert('good');
+
 };
 
 function shortTerm() {
     alert('Comming soon.');
+    calculator.filterValues();
 }
 
