@@ -1,7 +1,37 @@
 body{
-    background-image: url("../Assets/bg.jpg");
+    background-image: url(../Assets/bg.jpg);
     background-size: 100%;
 }
-.app-menu{
-
+nav{
+    height: 44px;
+    width: inherit;
+    border-bottom-color: rgba(0,0,0,.1);
+    border-width: 2px;
+    background: url(../Assets/doneralogo.png);
+    background-size: 90px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+nav a{
+    padding: 0 5px;
+    background: url(../Assets/navicons_sprite.png);
+    background-size: 130px;
+    max-width: 30px;
+    background-repeat: no-repeat;
+    background-position: -24px center;
+    height: 44px;
+    width: 44px;
+    display: inline-block;
+}
+header{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    min-height: 44px;
+    max-height: 44px;
+    line-height: 44px;
+    background: #3c2313;
+    color: #fff;
+    border: none;
+    min-width: 100%;
 }
