@@ -1,4 +1,4 @@
-var RangeClass = function (id, label, value, color) {
+var SemiCircleClass = function (id, label, value, color) {
 
     this.id = id;
     this.value = value;
@@ -21,14 +21,47 @@ var RangeClass = function (id, label, value, color) {
 
 };
 
+var RangesClass = function () {
+    var rangesWindow;
+
+    this.init = function () {
+        rangesWindow = document.getElementById('app-controls');
+    };
+
+    this.add = function (id, label, value) {
+        rangesWindow.innerHTML += '<div class="ctr-range" id="">'+
+                                '<span>' + value + '</span>' +
+                                '<label>' + label + '</label>'+
+                                '<input value="'+ value +
+                                '" type="range" id="" class="range-box" />'+
+                                '<input type="button" class="close-btn" value="x" /></div>';
+    };
+
+    this.remove = function () {
+
+    };
+
+    this.setEvent = function () {
+
+    };
+
+    this.removeEvent = function () {
+
+    };
+}
+
 var AppClass = function () {
 
     var ranges = [],
         canv;
 
+    this.controls = new RangesClass();
+
     this.init = function () {
         var canvas = document.getElementById('chart');
         canv = canvas.getContext('2d');
+
+        this.controls.init();
     };
 
     this.drawCircle = function () {
@@ -69,7 +102,7 @@ var AppClass = function () {
     };
 
     this.addControl = function (label, value, color) {
-        ranges.push(new RangeClass(1, label, value, color));
+        ranges.push(new SemiCircleClass(1, label, value, color));
     };
 
     this.removeControl = function (nput) {
@@ -105,7 +138,10 @@ function add() {
         color = document.getElementById('color').value;
 
     if (value !== null && value <= 100 && value >= 0) {
+
         app.addControl(label, value, color);
+        app.controls.add(1, label, value);
+
     } else {
         alert('Enter value from 0 to 100');
     }
