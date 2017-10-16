@@ -1,10 +1,24 @@
-var RangeClass = function () {
+var RangeClass = function (id, label, value, color) {
 
-    this.id;
-    this.value;
-    this.color;
+    this.id = id;
+    this.value = value;
+    this.color = color;
+    this.label = label;
 
-    this.init = function () {
+    this.draw = function (canv, percent) {
+
+        canv.beginPath();
+        canv.lineWidth = 2;
+        canv.strokeStyle = this.color;
+
+        canv.arc(100, 100, 85, 0, (1 - percent) * 2 * Math.PI, true);
+
+        canv.arc(100, 100, 60, 0, (1 - percent) * 2 * Math.PI, true);
+        canv.moveTo(160, 100);
+        canv.lineTo(185, 100);
+
+        canv.closePath();
+        canv.stroke();
 
     };
 
@@ -24,16 +38,20 @@ var AppClass = function () {
         canv.beginPath();
         canv.lineWidth = 2;
         canv.strokeStyle = 'black';
-        canv.lineWidth = '2px';
         canv.arc(100, 100, 95, 0, 2 * Math.PI);
         canv.stroke();
 
         canv.beginPath();
         canv.lineWidth = 2;
         canv.strokeStyle = 'black';
-        canv.lineWidth = '2px';
         canv.arc(100, 100, 50, 0, 2 * Math.PI);
         canv.stroke();
+    };
+
+    this.drawRanges = function () {
+        for(var i = 0; i < ranges.length; i++) {
+            ranges[i].draw(canv, .75);
+        }
     };
 
     this.erase = function () {
@@ -41,7 +59,7 @@ var AppClass = function () {
     };
 
     this.addControl = function (label, value, color) {
-
+        ranges.push(new RangeClass(1, label, value, color));
     };
 
     this.removeControl = function (nput) {
@@ -51,6 +69,7 @@ var AppClass = function () {
     this.draw = function () {
         this.erase();
         this.drawCircle();
+        this.drawRanges();
     };
 
     this.refresh = function () {
@@ -75,5 +94,6 @@ function add() {
         value = document.getElementById('value').value,
         color = document.getElementById('color').value;
 
+    app.addControl(label, value, color);
     console.log(label + '\n' + value + '\n' + color);
 };
