@@ -52,7 +52,11 @@ var RangesClass = function () {
 var AppClass = function () {
 
     var ranges = [],
-        canv;
+        canv,
+        boxes = [];
+
+        boxes['nput'] = [];
+        boxes['out'] = [];
 
     this.controls = new RangesClass();
 
@@ -87,21 +91,20 @@ var AppClass = function () {
     this.drawRanges = function () {
         var total = 0;
         var rotation = 0;
+
         for(var i = 0; i < ranges.length; i++) {
             total += ranges[i].value;
         }
+
         for(var i = 0; i < ranges.length; i++) {
+
             ranges[i].draw(canv, ranges[i].value / total, rotation);
             rotation += ranges[i].value / total;
-            this.getValues(i);
 
+            this.updateDisplayVal(i);
         }
     };
 
-    this.getValues = function (nput) {
-        ranges[nput].value = document.getElementById('range' + nput).childNodes[0].value;
-        console.log(ranges[nput].value);
-    }
     this.erase = function () {
         canv.clearRect(0, 0, 200, 200);
     };
@@ -112,10 +115,23 @@ var AppClass = function () {
         this.controls.clear();
         for (var i = 0; i < ranges.length; i++) {
             this.controls.add(i, ranges[i].label , ranges[i].value, ranges[i].color);
-
         }
+        this.updateBoxes();
     };
 
+    this.updateDisplayVal = function (nput) {
+        ranges[nput].value = parseInt(boxes['nput'][nput].value);
+        boxes['out'][nput].innerHTML = boxes['nput'][nput].value;
+    };
+
+    this.updateBoxes = function () {
+         for (var i = 0; i < ranges.length; i++) {
+            var box = document.getElementById('range' + i);
+            boxes['nput'][i] = box.children[2];
+            boxes['out'][i] = box.children[0];
+            //console.log(boxes['nput'][i].value);
+         }
+    };
     this.removeControl = function (nput) {
 
     };
