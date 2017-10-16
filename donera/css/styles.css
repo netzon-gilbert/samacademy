@@ -129,6 +129,22 @@ header{
     top: -5px;
     left: 50px;
 }
+#out_container{
+    z-index: 10;
+    position: absolute;
+    top: 190px;
+    left: 190px;
+    font-size: 11px;
+    color: #5D5A56;
+    margin-left: 5px;
+    font-family: 'Open Sans',Helvetica;
+}
+#out_value{
+    font-size: 17px;
+    color: #5D5A56;
+    font-weight: 700;
+    font-family: 'Open Sans',Helvetica;
+}
 
 /* input range styles */
 input[type=range] {
