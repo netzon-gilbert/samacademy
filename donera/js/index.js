@@ -37,23 +37,17 @@ var RangesClass = function () {
                                 '<label>' + label + '</label>' +
                                 '<input value="' + value  + '" type="range" style="' +
                                 '" id="" class="range-box" />' +
-                                '<input type="button" class="close-btn" value="x" /></div>';
+                                '<input id="x' + id +
+                                '" onclick="removeRange(this.id)" type="button" class="close-btn" value="x" /></div>';
     };
 
-    this.setEvent = function () {
-
-    };
-
-    this.removeEvent = function () {
-
-    };
 }
 
 var AppClass = function () {
 
     var ranges = [],
-        canv,
-        boxes = [];
+        boxes = [],
+        canv;
 
         boxes['nput'] = [];
         boxes['out'] = [];
@@ -112,10 +106,6 @@ var AppClass = function () {
     this.addControl = function (label, value, color) {
         ranges.push(new SemiCircleClass(1, label, value, color));
 
-        this.controls.clear();
-        for (var i = 0; i < ranges.length; i++) {
-            this.controls.add(i, ranges[i].label , ranges[i].value, ranges[i].color);
-        }
         this.updateBoxes();
     };
 
@@ -125,6 +115,11 @@ var AppClass = function () {
     };
 
     this.updateBoxes = function () {
+        this.controls.clear();
+        for (var i = 0; i < ranges.length; i++) {
+            this.controls.add(i, ranges[i].label , ranges[i].value, ranges[i].color);
+        }
+
          for (var i = 0; i < ranges.length; i++) {
             var box = document.getElementById('range' + i);
             boxes['nput'][i] = box.children[2];
@@ -133,7 +128,10 @@ var AppClass = function () {
          }
     };
     this.removeControl = function (nput) {
-
+        ranges.splice(nput, 1);
+        boxes['nput'].splice(nput, 1);
+        boxes['out'].splice(nput, 1);
+        this.updateBoxes();
     };
 
     this.draw = function () {
@@ -172,3 +170,8 @@ function add() {
         alert('Enter value from 0-100');
     }
 };
+
+function removeRange(nput) {
+    var id = parseInt(nput.substring(1, nput.length));
+    app.removeControl(id);
+}
