@@ -250,4 +250,5 @@ window.onload = function () {
 
 window.onclick = function () {
     app.export();
+    app.draw();
 };

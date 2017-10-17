@@ -117,24 +117,25 @@ header{
     margin: 20px;
 }
 .ctr-range span{
-    position: relative;
+    position: absolute;
+    top: -10px;
+    left: 0px;
     font-size: 11px;
-}
-.ctr-range span{
     padding: 10px;
 }
 .ctr-range label{
     z-index: -1;
     position: absolute;
     font-size: 11px;
-    top: -5px;
+    top: -10px;
     left: 50px;
 }
 #out_container{
+    float: right;
     z-index: 10;
     position: absolute;
     top: 190px;
-    left: 190px;
+    left: 180px;
     font-size: 11px;
     color: #5D5A56;
     margin-left: 5px;
@@ -149,6 +150,7 @@ header{
 
 /* input range styles */
 input[type=range] {
+    margin-left: 40px;
     z-index: 0;
     -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
     width: 180px; /* Specific width is required for Firefox. */
