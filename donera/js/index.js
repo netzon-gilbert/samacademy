@@ -21,14 +21,17 @@ var SemiCircleClass = function (id, label, value, color) {
 };
 
 var RangesClass = function () {
-    var rangesWindow;
+    var rangesWindow,
+        styleElement;
 
     this.init = function () {
         rangesWindow = document.getElementById('app-controls');
+        styleElement = document.getElementById('range_styles');
     };
 
     this.clear = function () {
         rangesWindow.innerHTML = '';
+        styleElement.innerHTML = '';
     };
 
     this.add = function (id, label, value, color) {
@@ -36,12 +39,17 @@ var RangesClass = function () {
                                 '<span>' + value + '</span>' +
                                 '<label>' + label + '</label>' +
 
-                                '<input value="' + value  + '" type="range" style="' +
+                                '<input id="input'+ id +'" value="' + value  + '" type="range" style="' +
                                 'border-color:' + color +'; color: ' + color +';' +
-                                '" id="" class="range-box" />'
+                                '" id="" class="range-box" />'+
 
-                                '<input id="x' + id +
-                                '" onclick="removeRange(this.id)" type="button" class="close-btn" value="x" /></div>';
+                                '<input id="x' + id + '" onclick="removeRange(this.id)" type="button" class="close-btn" value="x" /></div>';
+        this.addStyle(id, color);
+    };
+
+    this.addStyle = function (id, color) {
+        styleElement.innerHTML += 'input[type=range]#input'+ id +'::-webkit-slider-thumb {' +
+                                'background: '+ color +'}';
     };
 
 }
