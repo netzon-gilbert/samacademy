@@ -44,15 +44,12 @@ var RangesClass = function () {
                                 '" id="" class="range-box" />'+
 
                                 '<input id="x' + id + '" onclick="removeRange(this.id)" type="button" class="close-btn" value="x" /></div>';
-        this.addStyle(id, color);
-    };
 
-    this.addStyle = function (id, color) {
         styleElement.innerHTML += 'input[type=range]#input'+ id +'::-webkit-slider-thumb {' +
                                 'background: '+ color +'}';
     };
 
-}
+};
 
 var AppClass = function () {
 
@@ -75,68 +72,52 @@ var AppClass = function () {
         this.controls.init();
     };
 
-    this.drawCircle = function () {
-        canv.shadowOffsetX = 0;
-        canv.shadowOffsetY = 0;
-        canv.shadowBlur = 3;
-        canv.shadowColor = 'rgba(0, 0, 0, 0.8)';
+    this.export = function () {
+        var local = '[',
+            temp = {
+                label: null,
+                value: null,
+                color: null,
+            };
 
-        canv.beginPath();
-        canv.lineWidth = 1;
-        canv.fillStyle = "#EEE9DB";
-        canv.strokeStyle = '#B5B1A7';
-        canv.arc(100, 100, 95, 0, 2 * Math.PI);
-        canv.fill();
+        for (var i = 0; i < ranges.length; i++) {
+            temp.label = ranges[i].label;
+            temp.value = ranges[i].value;
+            temp.color = ranges[i].color;
 
-        canv.beginPath();
-        canv.arc(100, 100, 50, 0, 2 * Math.PI);
-        canv.fill();
+            local += JSON.stringify(temp);
+            local += (i !== (ranges.length - 1))? ',' : '' ;
+        }
+        local += ']';
 
-        canv.shadowBlur = 0;
-        canv.shadowColor = 'none';
+        if (typeof(Storage) !== "undefined") {
+
+            localStorage.setItem('ranges', local);
+
+        } else {
+            console.log("error: local storage not supported!");
+        }
     };
 
-    this.drawRanges = function () {
-        var total = 0;
-        var rotation = 0;
+    this.import = function () {
+        try {
+            var retrieve = JSON.parse(localStorage.ranges);
+            for(var i = 0; i < retrieve.length; i++){
+                this.addControl(retrieve[i].label, retrieve[i].value, retrieve[i].color);
+            }
+        } catch (e) {
 
-        for(var i = 0; i < ranges.length; i++) {
-            total += ranges[i].value;
         }
-
-        for(var i = 0; i < ranges.length; i++) {
-
-            ranges[i].draw(canv, ranges[i].value / total, rotation);
-            rotation += ranges[i].value / total;
-
-            this.updateDisplayVal(i);
-        }
-        this.displayActive();
     };
 
     this.active = function (nput) {
         activeRange = nput;
     };
 
-    this.displayActive = function () {
-        if (activeRange !== null) {
-            outVal.innerHTML = ranges[activeRange].value;
-        }
-    };
-
-    this.erase = function () {
-        canv.clearRect(0, 0, 200, 200);
-    };
-
     this.addControl = function (label, value, color) {
         ranges.push(new SemiCircleClass(1, label, value, color));
 
         this.updateBoxes();
-    };
-
-    this.updateDisplayVal = function (nput) {
-        ranges[nput].value = parseInt(boxes['nput'][nput].value);
-        boxes['out'][nput].innerHTML = boxes['nput'][nput].value;
     };
 
     this.updateBoxes = function () {
@@ -160,26 +141,55 @@ var AppClass = function () {
     };
 
     this.draw = function () {
-        this.erase();
-        this.drawCircle();
-        this.drawRanges();
+        canv.clearRect(0, 0, 200, 200);
+
+        canv.shadowOffsetX = 0;
+        canv.shadowOffsetY = 0;
+        canv.shadowBlur = 3;
+        canv.shadowColor = 'rgba(0, 0, 0, 0.8)';
+
+        canv.beginPath();
+        canv.lineWidth = 1;
+        canv.fillStyle = "#EEE9DB";
+        canv.strokeStyle = '#B5B1A7';
+        canv.arc(100, 100, 95, 0, 2 * Math.PI);
+        canv.fill();
+
+        canv.beginPath();
+        canv.arc(100, 100, 50, 0, 2 * Math.PI);
+        canv.fill();
+
+        canv.shadowBlur = 0;
+        canv.shadowColor = 'none';
+
+        var total = 0;
+        var rotation = 0;
+
+        for(var i = 0; i < ranges.length; i++) {
+            total += ranges[i].value;
+        }
+
+        for(var i = 0; i < ranges.length; i++) {
+
+            ranges[i].draw(canv, ranges[i].value / total, rotation);
+            rotation += ranges[i].value / total;
+
+            ranges[i].value = parseInt(boxes['nput'][i].value);
+            boxes['out'][i].innerHTML = boxes['nput'][i].value;
+        }
+
+        try {
+            if (activeRange !== null) {
+                outVal.innerHTML = ranges[activeRange].value;
+            }
+        } catch (e) {
+            //console.log("error");
+        }
     };
 
-    this.refresh = function () {
-        this.draw();
-    };
 };
 
 var app = new AppClass();
-
-window.onload = function () {
-
-    app.init();
-
-    setInterval(function () {
-        app.refresh();
-    }, 60);
-};
 
 function add() {
 
@@ -204,4 +214,18 @@ function removeRange(nput) {
 function activeRange(nput) {
     var id = parseInt(nput.substring(5, nput.length));
     app.active(id);
+};
+
+window.onload = function () {
+
+    app.init();
+    app.import();
+
+    setInterval(function () {
+        app.draw();
+    }, 60);
+};
+
+window.onclick = function () {
+    app.export();
 };
