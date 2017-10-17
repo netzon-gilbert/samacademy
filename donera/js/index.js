@@ -32,11 +32,14 @@ var RangesClass = function () {
     };
 
     this.add = function (id, label, value, color) {
-        rangesWindow.innerHTML += '<div class="ctr-range" id="range' + id + '">' +
+        rangesWindow.innerHTML += '<div onmousedown="activeRange(this.id)" class="ctr-range" id="range' + id + '">' +
                                 '<span>' + value + '</span>' +
                                 '<label>' + label + '</label>' +
+
                                 '<input value="' + value  + '" type="range" style="' +
-                                '" id="" class="range-box" />' +
+                                'border-color:' + color +'; color: ' + color +';' +
+                                '" id="" class="range-box" />'
+
                                 '<input id="x' + id +
                                 '" onclick="removeRange(this.id)" type="button" class="close-btn" value="x" /></div>';
     };
@@ -47,6 +50,8 @@ var AppClass = function () {
 
     var ranges = [],
         boxes = [],
+        outVal,
+        activeRange = null,
         canv;
 
         boxes['nput'] = [];
@@ -56,6 +61,7 @@ var AppClass = function () {
 
     this.init = function () {
         var canvas = document.getElementById('chart');
+        outVal = document.getElementById('out_value');
         canv = canvas.getContext('2d');
 
         this.controls.init();
@@ -96,6 +102,17 @@ var AppClass = function () {
             rotation += ranges[i].value / total;
 
             this.updateDisplayVal(i);
+        }
+        this.displayActive();
+    };
+
+    this.active = function (nput) {
+        activeRange = nput;
+    };
+
+    this.displayActive = function () {
+        if (activeRange !== null) {
+            outVal.innerHTML = ranges[activeRange].value;
         }
     };
 
@@ -174,4 +191,9 @@ function add() {
 function removeRange(nput) {
     var id = parseInt(nput.substring(1, nput.length));
     app.removeControl(id);
-}
+};
+
+function activeRange(nput) {
+    var id = parseInt(nput.substring(5, nput.length));
+    app.active(id);
+};
