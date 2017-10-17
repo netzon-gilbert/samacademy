@@ -101,13 +101,15 @@ var AppClass = function () {
     };
 
     this.import = function () {
-        try {
-            var retrieve = JSON.parse(localStorage.ranges);
-            for(var i = 0; i < retrieve.length; i++){
-                this.addControl(retrieve[i].label, retrieve[i].value, retrieve[i].color);
-            }
-        } catch (e) {
+        var ranges = localStorage.getItem('ranges');
 
+        if (ranges) {
+            try {
+                var retrieve = JSON.parse(ranges);
+                for(var i = 0; i < retrieve.length; i++){
+                    this.addControl(retrieve[i].label, retrieve[i].value, retrieve[i].color);
+                }
+            } catch(e) {}
         }
     };
 
@@ -117,7 +119,7 @@ var AppClass = function () {
 
     this.addControl = function (label, value, color) {
         ranges.push(new SemiCircleClass(1, label, value, color));
-
+        this.active(ranges.length - 1);
         this.updateBoxes();
     };
 
@@ -138,6 +140,7 @@ var AppClass = function () {
         ranges.splice(nput, 1);
         boxes['nput'].splice(nput, 1);
         boxes['out'].splice(nput, 1);
+        this.active(ranges.length - 1);
         this.updateBoxes();
     };
 
@@ -201,6 +204,7 @@ function add() {
     if (value !== null && value <= 100 && value >= 0) {
 
         app.addControl(label, value, color);
+        app.draw();
 
     } else {
         alert('Enter value from 0-100');
@@ -210,6 +214,7 @@ function add() {
 function removeRange(nput) {
     var id = parseInt(nput.substring(1, nput.length));
     app.removeControl(id);
+    app.draw();
 };
 
 function activeRange(nput) {
