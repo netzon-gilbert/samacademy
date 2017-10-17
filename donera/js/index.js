@@ -41,7 +41,7 @@ var RangesClass = function () {
 
                                 '<input id="input'+ id +'" value="' + value  + '" type="range" style="' +
                                 'border-color:' + color +'; color: ' + color +';' +
-                                '" id="" class="range-box" />'+
+                                '" id="" onmousedown="start()" onmouseup="stop()" class="range-box" />'+
 
                                 '<input id="x' + id + '" onclick="removeRange(this.id)" type="button" class="close-btn" value="x" /></div>';
 
@@ -62,6 +62,7 @@ var AppClass = function () {
         boxes['nput'] = [];
         boxes['out'] = [];
 
+    this.animate = false;
     this.controls = new RangesClass();
 
     this.init = function () {
@@ -216,14 +217,30 @@ function activeRange(nput) {
     app.active(id);
 };
 
+function start() {
+    app.animate = true;
+    animate();
+};
+
+function animate() {
+    setTimeout(function () {
+        if(app.animate == true) {
+            app.draw();
+            animate();
+        }
+    }, 100);
+};
+
+function stop() {
+    app.animate = false;
+};
+
 window.onload = function () {
 
     app.init();
     app.import();
 
-    setInterval(function () {
-        app.draw();
-    }, 60);
+    app.draw();
 };
 
 window.onclick = function () {
