@@ -36,6 +36,7 @@ var RangesClass = function (params) {
         styleElement.innerHTML = '';
     };
 
+    // add a complete set of control, range, span etc. on the document
     this.add = function (id, label, value, color) {
 
         var rangeBox = document.createElement('div'),
@@ -47,7 +48,6 @@ var RangesClass = function (params) {
             rangeBox.setAttribute('class', 'ctr-range');
             rangeBox.setAttribute('id', 'range' + id);
             rangeBox.addEventListener('mousedown', function () {
-                // activeRange(this.id);
                 if (   params
                     && params.rangeBox
                     && params.rangeBox.onmousedown) {
@@ -191,6 +191,7 @@ var app = new function () {
         }
     });
 
+    // initialize the app , accessing the needed elements
     this.init = function () {
         var canvas = document.getElementById('chart');
         outVal = document.getElementById('out_value');
@@ -211,6 +212,7 @@ var app = new function () {
         this.draw();
     };
 
+    // export data of the current status on the local storage
     this.export = function () {
         var local = '[',
             temp = {
@@ -238,6 +240,7 @@ var app = new function () {
         }
     };
 
+    // import data from the last status saved on the local storage
     this.import = function () {
         var ranges = localStorage.getItem('ranges');
 
@@ -251,16 +254,19 @@ var app = new function () {
         }
     };
 
+    // set the active range to be rendered for the display
     this.active = function (nput) {
         activeRange = nput;
     };
 
+    // add a new control and a new data in the pie graph
     this.addControl = function (label, value, color) {
         ranges.push(new SemiCircleClass(1, label, value, color));
         this.active(ranges.length - 1);
         this.updateBoxes();
     };
 
+    // update the data to synchronise the control and the pie graph
     this.updateBoxes = function () {
         this.controls.clear();
         for (var i = 0; i < ranges.length; i++) {
@@ -274,6 +280,7 @@ var app = new function () {
          }
     };
 
+    // remove range and the specific pie graph
     this.removeControl = function (nput) {
         ranges.splice(nput, 1);
         boxes['nput'].splice(nput, 1);
@@ -282,6 +289,7 @@ var app = new function () {
         this.updateBoxes();
     };
 
+    // draw pie chart on the canvas
     this.draw = function () {
         canv.clearRect(0, 0, 200, 200);
 
