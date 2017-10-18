@@ -5,9 +5,8 @@
     <title>Exer 3</title>
 </head>
 <body>
-    <script src="exer.js"></script>
     <header></header>
-    <article>
+    <article class="app">
         <section>
             <p>
                 <b>
@@ -17,17 +16,19 @@
             <p>
                 Note : A prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
             </p>
-            <input type="text" id="input" />
+            <input type="text" v-model="nput" />
             <br />
             <br />
         </section>
-        <section><button onclick="run()">Run</button></section>
+        <section><button v-on:click="isPrime()">Run</button></section>
         <section>
             <p>Output Here:</p>
-            <div id="output">
-                <!-- TODO: Add elements here if necessary -->
+            <div>
+                {{ out }}
             </div>
         </section>
     </article>
+    <script src="vue.js"></script>
+    <script src="exer.js"></script>
 </body>
 </html>
