@@ -1,3 +1,4 @@
+// class the semi circles in the pie graph
 var SemiCircleClass = function (id, label, value, color) {
 
     this.id = id;
@@ -20,7 +21,8 @@ var SemiCircleClass = function (id, label, value, color) {
 
 };
 
-var RangesClass = function () {
+// range class for manipulating input ranges
+var RangesClass = function (params) {
     var rangesWindow,
         styleElement;
 
@@ -35,42 +37,178 @@ var RangesClass = function () {
     };
 
     this.add = function (id, label, value, color) {
-        rangesWindow.innerHTML += '<div onmousedown="activeRange(this.id)" class="ctr-range" id="range' + id + '">' +
-                                '<span>' + value + '</span>' +
-                                '<label>' + label + '</label>' +
 
-                                '<input id="input'+ id +'" value="' + value  + '" type="range" style="' +
-                                'border-color:' + color +'; color: ' + color +';' +
-                                '" id="" onmousedown="start()" onmouseup="stop()" class="range-box" />'+
+        var rangeBox = document.createElement('div'),
+            rangeValue = document.createElement('span'),
+            rangeLabel = document.createElement('label'),
+            nputRange = document.createElement('input'),
+            closeBtn =document.createElement('input');
 
-                                '<input id="x' + id + '" onclick="removeRange(this.id)" type="button" class="close-btn" value="x" /></div>';
+            rangeBox.setAttribute('class', 'ctr-range');
+            rangeBox.setAttribute('id', 'range' + id);
+            rangeBox.addEventListener('mousedown', function () {
+                // activeRange(this.id);
+                if (   params
+                    && params.rangeBox
+                    && params.rangeBox.onmousedown) {
+                    params.rangeBox.onmousedown(this.id);
+                }
+            });
 
-        styleElement.innerHTML += 'input[type=range]#input'+ id +'::-webkit-slider-thumb {' +
+            rangeValue.appendChild(document.createTextNode(value));
+            rangeLabel.appendChild(document.createTextNode(label));
+
+            nputRange.setAttribute('type', 'range');
+            nputRange.setAttribute('id', 'input' + id);
+            nputRange.setAttribute('value', value);
+            nputRange.setAttribute('class', 'range-box');
+            nputRange.setAttribute('style', 'border-color:'+ color);
+            nputRange.addEventListener('mousedown', function () {
+                if (   params
+                    && params.nputRange
+                    && params.nputRange.onmousedown) {
+                    params.nputRange.onmousedown();
+                }
+            });
+            nputRange.addEventListener('mouseup', function () {
+                if (   params
+                    && params.nputRange
+                    && params.nputRange.onmouseup) {
+                    params.nputRange.onmouseup();
+                }
+            });
+
+            closeBtn.setAttribute('type', 'button');
+            closeBtn.setAttribute('id', 'x' + id);
+            closeBtn.setAttribute('class', 'close-btn');
+            closeBtn.setAttribute('value', 'x');
+            closeBtn.addEventListener('click', function () {
+                if (   params
+                    && params.closeBtn
+                    && params.closeBtn.onclick) {
+                    params.closeBtn.onclick(this.id);
+                }
+            });
+
+            rangeBox.appendChild(rangeValue);
+            rangeBox.appendChild(rangeLabel);
+            rangeBox.appendChild(nputRange);
+            rangeBox.appendChild(closeBtn);
+
+            rangesWindow.appendChild(rangeBox);
+
+            styleElement.innerHTML += 'input[type=range]#input'+ id +
+                                '::-webkit-slider-thumb {' +
                                 'background: '+ color +'}';
+
     };
 
 };
 
-var AppClass = function () {
+// the application container, heart of the processing
+var app = new function () {
 
     var ranges = [],
         boxes = [],
         outVal,
         activeRange = null,
+        self = this,
         canv;
 
         boxes['nput'] = [];
         boxes['out'] = [];
 
+    // get the id of the active input range
+    function setActiveRange(nput) {
+        var id = parseInt(nput.substring(5, nput.length));
+        self.active(id);
+    }
+
+    // starts the animation process for the canvas and output values
+    function start() {
+        self.animate = true;
+        animate();
+    };
+
+    // stops the animation process
+    function stop() {
+        self.animate = false;
+    };
+
+    // the animation frame
+    function animate() {
+        setTimeout(function () {
+            if(app.animate == true) {
+                self.draw();
+                animate();
+            }
+        }, 100);
+    };
+
+    // to remove range when close button is clicked
+    function removeRange(nput) {
+        var id = parseInt(nput.substring(1, nput.length));
+        self.removeControl(id);
+        self.draw();
+    };
+
+    // adds a input range control and add data to pie graph
+    function add() {
+
+        var label = document.getElementById('label').value,
+            value = parseInt(document.getElementById('value').value),
+            color = document.getElementById('color').value;
+
+        if (value !== null && value <= 100 && value >= 0) {
+
+            self.addControl(label, value, color);
+            self.draw();
+
+        } else {
+            alert('Enter value from 0-100');
+        }
+    };
+
     this.animate = false;
-    this.controls = new RangesClass();
+    this.controls = new RangesClass({
+        rangeBox: {
+            onmousedown: function (id) {
+                setActiveRange(id);
+            }
+        },
+        nputRange: {
+            onmousedown: function () {
+                start();
+            },
+            onmouseup: function () {
+                stop();
+            }
+        },
+        closeBtn: {
+            onclick: function (nput) {
+                removeRange(nput);
+            }
+        }
+    });
 
     this.init = function () {
         var canvas = document.getElementById('chart');
         outVal = document.getElementById('out_value');
         canv = canvas.getContext('2d');
 
+        document.getElementById('add').addEventListener('click', function () {
+            add();
+        });
+
         this.controls.init();
+
+        window.onclick = function () {
+            self.export();
+            self.draw();
+        };
+
+        this.import();
+        this.draw();
     };
 
     this.export = function () {
@@ -133,9 +271,9 @@ var AppClass = function () {
             var box = document.getElementById('range' + i);
             boxes['nput'][i] = box.children[2];
             boxes['out'][i] = box.children[0];
-            //console.log(boxes['nput'][i].value);
          }
     };
+
     this.removeControl = function (nput) {
         ranges.splice(nput, 1);
         boxes['nput'].splice(nput, 1);
@@ -193,62 +331,7 @@ var AppClass = function () {
 
 };
 
-var app = new AppClass();
-
-function add() {
-
-    var label = document.getElementById('label').value,
-        value = parseInt(document.getElementById('value').value),
-        color = document.getElementById('color').value;
-
-    if (value !== null && value <= 100 && value >= 0) {
-
-        app.addControl(label, value, color);
-        app.draw();
-
-    } else {
-        alert('Enter value from 0-100');
-    }
-};
-
-function removeRange(nput) {
-    var id = parseInt(nput.substring(1, nput.length));
-    app.removeControl(id);
-    app.draw();
-};
-
-function activeRange(nput) {
-    var id = parseInt(nput.substring(5, nput.length));
-    app.active(id);
-};
-
-function start() {
-    app.animate = true;
-    animate();
-};
-
-function animate() {
-    setTimeout(function () {
-        if(app.animate == true) {
-            app.draw();
-            animate();
-        }
-    }, 100);
-};
-
-function stop() {
-    app.animate = false;
-};
-
+// initialize the application when the page finish loading
 window.onload = function () {
-
     app.init();
-    app.import();
-
-    app.draw();
-};
-
-window.onclick = function () {
-    app.export();
-    app.draw();
 };

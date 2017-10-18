@@ -1,17 +1,45 @@
 function toolE() {
-    var add,
-        lab,
-        val,
-        col;
+    var rangeBox = document.createElement('div'),
+            rangeValue = document.createElement('span'),
+            rangeLabel = document.createElement('label'),
+            nputRange = document.createElement('input'),
+            closeBtn =document.createElement('input');
 
-        add = document.getElementById('add');
-        lab = document.getElementById('label');
-        val = document.getElementById('value');
-        col = document.getElementById('color');
+            rangeBox.setAttribute('class', 'ctr-range');
+            rangeBox.setAttribute('id', 'range');
+            rangeBox.addEventListener('mousedown', function () {
+                activeRange(this.id);
+            });
 
-        add.addEventListener('mousedown', function () {
+            nputRange.setAttribute('type', 'range');
+            nputRange.setAttribute('id', 'input');
+            nputRange.setAttribute('value', 'good');
+            nputRange.setAttribute('class', 'range-box');
+            nputRange.setAttribute('style', 'border-color: black');
+            nputRange.addEventListener('mousedown', function () {
+                start();
+            });
+            nputRange.addEventListener('mouseup', function () {
+                stop();
+            });
 
-        });
+            closeBtn.setAttribute('type', 'button');
+            closeBtn.setAttribute('id', 'x');
+            closeBtn.setAttribute('class', 'close-btn');
+            closeBtn.setAttribute('value', 'x');
+            closeBtn.addEventListener('click', function () {
+                removeRange(this.id);
+            });
+
+            rangeBox.appendChild(rangeValue);
+            rangeBox.appendChild(rangeLabel);
+            rangeBox.appendChild(nputRange);
+            rangeBox.appendChild(closeBtn);
+
+            document.getElementById('app-controls').appendChild(rangeBox);
+
+            rangeValue.innerHTML('value');
+            rangeLabel.innerHTML('label');
 };
 
 window.onload = function () {
