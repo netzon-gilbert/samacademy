@@ -5,9 +5,8 @@
     <title>Exer 4</title>
 </head>
 <body>
-    <script src="exer.js"></script>
     <header></header>
-    <article>
+    <article class="app">
         <section>
             <p>
                 <b>
@@ -15,18 +14,20 @@
                 </b>
             </p>
             <p>
-                Sample array : [1,2,3,4,5]
+                Sample array : [1, 4, 9, 3, 35, 8]
                 <br>
-                Expected Output : 2,4
+                Expected Output :
             </p>
         </section>
-        <section><button onclick="run()">Run</button></section>
+        <section><button v-on:click="secMaxima()" >Run</button></section>
         <section>
             <p>Output Here:</p>
-            <div id="output">
-                <!-- TODO: Add elements here if necessary -->
+            <div>
+                {{ out }}
             </div>
         </section>
     </article>
+    <script src="vue.js"></script>
+    <script src="exer.js"></script>
 </body>
 </html>
