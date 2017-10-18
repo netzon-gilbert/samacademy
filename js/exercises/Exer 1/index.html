@@ -16,10 +16,11 @@
         <p>
             Example x = <input type="text" v-model="nput" />
         </p>
-        <section><button v-on:click="">Run</button></section>
+        <button v-on:click="flip()">Run</button>
         <section>
-            <p>Output Here:{{ nput.split('').reverse().join('') }}</p>
+            <p>Output Here:</p>
             <div>
+                {{ out }}
             </div>
         </section>
     </article>

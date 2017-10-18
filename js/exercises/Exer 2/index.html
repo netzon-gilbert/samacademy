@@ -5,7 +5,6 @@
     <title>Exer 2</title>
 </head>
 <body>
-    <script src="exer.js"></script>
     <header></header>
     <article>
         <section>
@@ -14,17 +13,19 @@
                     Write a JavaScript function that returns a passed string with letters in alphabetical order.
                 </b>
             </p>
-            <p>
-                Example string : <input type="text" id="input" />
-            </p>
         </section>
-        <section><button onclick="run()">Run</button></section>
-        <section>
+        <section class="app">
+             <p>
+                Example string : <input type="text" v-model="nput" />
+            </p>
+            <button v-on:click="">Run</button>
             <p>Output Here:</p>
-            <div id="output">
-                <!-- TODO: Add elements here if necessary -->
+            <div>
+                {{ nput }}
             </div>
         </section>
     </article>
+    <script src="vue.js"></script>
+    <script src="exer.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 // TODO: Write your solution here
-function alphabetized(nput) {
+/*function alphabetized(nput) {
 
     var chars = nput.split(''),
         sorted,
@@ -19,4 +19,10 @@ function run() {
         output.innerHTML = alphabetized(input);
 
     console.log('Code Awesome');
-};
+};*/
+new Vue({
+    el : '.app',
+    data : {
+        nput : ''
+    }
+})
