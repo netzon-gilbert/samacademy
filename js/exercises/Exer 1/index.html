@@ -5,25 +5,25 @@
     <title>Exer 1</title>
 </head>
 <body>
-    <script src="exer.js"></script>
     <header>
         <p>
             <b>
                 Write a JavaScript function that reverse a number.
             </b>
         </p>
-        <p>
-            Example x = <input type="text" id="input" />
-        </p>
     </header>
-    <article>
-        <section><button onclick="run()">Run</button></section>
+    <article class="app">
+        <p>
+            Example x = <input type="text" v-model="nput" />
+        </p>
+        <section><button v-on:click="">Run</button></section>
         <section>
-            <p>Output Here:</p>
-            <div id="output">
-                <!-- TODO: Add elements here if necessary -->
+            <p>Output Here:{{ nput.split('').reverse().join('') }}</p>
+            <div>
             </div>
         </section>
     </article>
+    <script src="vue.js"></script>
+    <script src="exer.js"></script>
 </body>
 </html>
