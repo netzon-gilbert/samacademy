@@ -106,7 +106,7 @@ var RangesClass = function (params) {
 };
 
 // the application container, heart of the processing
-var app = new function () {
+var App = function () {
 
     var ranges = [],
         boxes = [],
@@ -138,7 +138,7 @@ var app = new function () {
     // the animation frame
     function animate() {
         setTimeout(function () {
-            if(app.animate == true) {
+            if(self.animate == true) {
                 self.draw();
                 animate();
             }
@@ -341,5 +341,5 @@ var app = new function () {
 
 // initialize the application when the page finish loading
 window.onload = function () {
-    app.init();
+    (new App()).init();
 };
