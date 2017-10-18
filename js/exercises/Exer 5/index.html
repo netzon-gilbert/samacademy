@@ -5,25 +5,26 @@
     <title>Exer 5</title>
 </head>
 <body>
-    <script src="exer.js"></script>
     <header></header>
-    <article>
+    <article class="app">
         <section>
             <p>
                 <b>
                     Write a JavaScript function to compute the value of b<sup>n</sup> where n is the exponent and b is the bases. Accept b and n from the user and display the result.
                 </b><br /><br />
-                <input type="text" id="input1" /> b<br /><br />
-                <input type="text" id="input2" /> n
+                <input type="text" v-model="nput1" /> b<br /><br />
+                <input type="text" v-model="nput2" /> n
             </p>
         </section>
-        <section><button onclick="run()">Run</button></section>
+        <section><button v-on:click="power()">Run</button></section>
         <section>
             <p>Output Here:</p>
-            <div id="output">
-                <!-- TODO: Add elements here if necessary -->
+            <div>
+                {{ out }}
             </div>
         </section>
     </article>
+    <script src="vue.js"></script>
+    <script src="exer.js"></script>
 </body>
 </html>
