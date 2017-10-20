@@ -1,17 +1,23 @@
-// TODO: Write your solution here
-function addRaw() {
+new Vue({
+    el : '.app',
+    data : {
+        tableId : 'table'
+    },
+    methods : {
+        addRaw : function () {
+            var table = document.getElementById(this.tableId);
+            var raw = document.createElement('tr');
+            var data1 = document.createElement('td');
+            var data2 = document.createElement('td');
 
-    var table = document.getElementById('table'),
-        raw = table.insertRow(1),
-        cell1 = raw.insertCell(0),
-        cell2 = raw.insertCell(1);
+                raw.appendChild(data1);
+                raw.appendChild(data2);
 
-        cell1.innerHTML = 'row 1';
-        cell2.innerHTML = 'row 2';
-};
+                data1.appendChild(document.createTextNode('raw 1'));
+                data2.appendChild(document.createTextNode('raw 2'));
 
-function run() {
-    // TODO: Start calling your function here
-    addRaw();
-    console.log('Code Awesome');
-};
+                table.appendChild(raw);
+
+        }
+    }
+});
