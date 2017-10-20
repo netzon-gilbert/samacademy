@@ -5,16 +5,15 @@
     <title>Exer 7</title>
 </head>
 <body>
-    <script src="exer.js"></script>
     <header></header>
-    <article>
+    <article class="app">
         <section>
             <p>
                 <b>
                     Write a JavaScript program to display a random image (clicking on a button).
                 </b>
                 <br />
-                <button onclick="run()">Run</button>
+                <button v-on:mousedown="display()">Run</button>
             </p>
             <p>
                 Get image sources fom Google images
@@ -22,11 +21,12 @@
         </section>
         <section>
             <p>Output Here:</p>
-            <div id="output">
-                <img src="" id="display" />
-                <!-- TODO: Add elements here if necessary -->
+            <div>
+                <img id="display" />
             </div>
         </section>
     </article>
+    <script src="vue.js"></script>
+    <script src="exer.js"></script>
 </body>
 </html>
