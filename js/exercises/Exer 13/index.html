@@ -5,9 +5,8 @@
     <title>Exer 13</title>
 </head>
 <body>
-    <script src="exer.js"></script>
     <header></header>
-    <article>
+    <article class="app">
         <section>
             <p>
                 <b>
@@ -20,13 +19,19 @@
                 For example, 371 is an Armstrong number since 3**3 + 7**3 + 1**3 = 371.
             </p>
         </section>
-        <section><button onclick="run()">Run</button></section>
+        <section><button v-on:click="findArmstrong()">Run</button></section>
         <section>
             <p>Output Here:</p>
-            <div id="output">
-                <!-- TODO: Add elements here if necessary -->
+            <div>
+                <ul>
+                    <li v-for="nums in aNum">
+                        {{ nums }}
+                    </li>
+                </ul>
             </div>
         </section>
     </article>
+    <script src="vue.js"></script>
+    <script src="exer.js"></script>
 </body>
 </html>
