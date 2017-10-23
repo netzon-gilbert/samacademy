@@ -1,22 +1,23 @@
-// TODO: Write your solution here
- var student = {
-        name : 'David Rayy',
-        sclass : 'VI',
-        rollno : 12
-    };
+var vue = new Vue({
+    el : '.app',
+    data : {
+        student : {
+            name : 'David Rayy',
+            sclass : 'VI',
+            rollno : 12
+        },
+        len : 0
 
-function objLen(nput) {
+    },
+    methods : {
+        objLen : function (nput) {
 
-    var count = 0;
-    for (var keys in nput) {
-        count++;
+            var count = 0;
+            for (var keys in nput) {
+                count++;
+            }
+
+            this.len = count;
+        }
     }
-
-    return count;
-};
-
-function run () {
-    // TODO: Start calling your function here
-    document.getElementById('output').innerHTML = objLen(student);
-    console.log('Code Awesome');
-};
+});
