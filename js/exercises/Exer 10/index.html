@@ -5,9 +5,8 @@
     <title>Exer 10</title>
 </head>
 <body>
-    <script src="exer.js"></script>
     <header></header>
-    <article>
+    <article class="app">
         <section>
             <p>
                 <b>
@@ -23,10 +22,16 @@
         <section><button onclick="run()">Run</button></section>
         <section>
             <p>Output Here:</p>
-            <div id="output">
-                <!-- TODO: Add elements here if necessary -->
+            <div>
+                <ul>
+                    <li v-for="student in student">
+                        {{ student.info }}
+                    </li>
+                </ul>
             </div>
         </section>
     </article>
+    <script type="text/JavaScript" src="vue.js" ></script>
+    <script type="text/JavaScript" src="exer.js" ></script>
 </body>
 </html>
