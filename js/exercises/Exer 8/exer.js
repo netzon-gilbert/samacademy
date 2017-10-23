@@ -1,5 +1,20 @@
+var vue = new Vue({
+    el : '.app',
+    data : {
+        w : window.innerWidth,
+        h : window.innerHeight
+    },
+    methods : {
+        resize : function (w, h) {
+            this.w = w;
+            this.h = h;
+        }
+    }
+});
+
 window.addEventListener('resize', function () {
-    w = window.innerWidth;
-    h = window.innerHeight;
-    document.getElementById('output').innerHTML = w + 'px, ' + h +'px';
+    var w = window.innerWidth,
+        h = window.innerHeight;
+
+    vue.resize(w, h);
 });
