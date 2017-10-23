@@ -1,11 +1,5 @@
-// TODO: Write your solution here
-var ouput = document.getElementById('output');
-
 window.addEventListener('resize', function () {
-    output.innerHTML = window.innerWidth + ' px, ' + window.innerHeight + ' px';
+    w = window.innerWidth;
+    h = window.innerHeight;
+    document.getElementById('output').innerHTML = w + 'px, ' + h +'px';
 });
-
-function run () {
-    // TODO: Start calling your function here
-    console.log('Code Awesome');
-};
