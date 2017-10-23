@@ -5,9 +5,8 @@
     <title>Exer 9</title>
 </head>
 <body>
-    <script src="exer.js"></script>
     <header></header>
-    <article>
+    <article class="app">
         <section>
             <p>
                 <b>
@@ -20,11 +19,25 @@
         </section>
         <section>
             <p>Output Here:</p>
-            <div id="output">
-                <!-- TODO: Add elements here if necessary -->
-                <strong>We</strong> have just started <strong>this</strong> section for the users (<strong>beginner</strong> to intermediate) who <strong>want</strong> to work with <strong>various</strong> JavaScript <strong>problems</strong> and write scripts online to <strong>test</strong> their JavaScript <strong>skill</strong>.
+                <strong v-on:mouseover="mouseOver($event)" v-on:mouseOut="mouseOut($event)">We</strong>
+                have just started
+                <strong v-on:mouseover="mouseOver($event)" v-on:mouseOut="mouseOut($event)">this</strong>
+                section for the users (
+                <strong v-on:mouseover="mouseOver($event)" v-on:mouseOut="mouseOut($event)">beginner</strong>
+                to intermediate) who
+                <strong v-on:mouseover="mouseOver($event)" v-on:mouseOut="mouseOut($event)">want</strong>
+                to work with
+                <strong v-on:mouseover="mouseOver($event)" v-on:mouseOut="mouseOut($event)">various</strong>
+                JavaScript
+                <strong v-on:mouseover="mouseOver($event)" v-on:mouseOut="mouseOut($event)">problems</strong>
+                and write scripts online to
+                <strong v-on:mouseover="mouseOver($event)" v-on:mouseOut="mouseOut($event)">test</strong>
+                their JavaScript
+                <strong v-on:mouseover="mouseOver($event)" v-on:mouseOut="mouseOut($event)">skill</strong>.
             </div>
         </section>
     </article>
+    <script src="vue.js"></script>
+    <script src="exer.js"></script>
 </body>
 </html>
