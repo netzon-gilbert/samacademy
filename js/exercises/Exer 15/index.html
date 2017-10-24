@@ -5,17 +5,16 @@
     <title>Exer 15</title>
 </head>
 <body>
-    <script src="exer.js"></script>
     <link type="text/css" rel="stylesheet" href="styles.css" />
     <header></header>
-    <article>
+    <article class="app">
         <section>
             <p>
                 <b>
                     Write a JavaScript function to truncates a string if it is longer than the specified number of characters. Truncated strings will end with a translatable ellipsis sequence ("…") (by default) or specified characters. A tooltip of all the text appears when it's ellipsized.
                 </b>
             </p>
-            <p>
+            <p id="nputTexts">
                 Test Data :
                 <br>
                 text_truncate('We are doing JS string exercises.');
@@ -31,13 +30,20 @@
                 "We are doing !!"
             </p>
         </section>
-        <section><button onclick="run()">Run</button></section>
+        <section><button v-on:click="divideString()">Run</button></section>
         <section>
             <p>Output Here:</p>
-            <div id="output">
-                <!-- TODO: Add elements here if necessary -->
+            <div>
+                <p v-for="texts in text">
+                    {{ texts.substring(0, 40) }}
+                    <span v-if="checkLen(texts, 50)">...</span>
+                    <span class="tooltip" v-if="checkLen(texts, 50)">{{ texts }}</span>
+                </p>
+
             </div>
         </section>
     </article>
+    <script src="vue.js"></script>
+    <script src="exer.js"></script>
 </body>
 </html>

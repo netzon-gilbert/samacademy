@@ -1,75 +1,43 @@
-// TODO: Write your solution here
-function getTexts(nput) {
-    var texts = new Array(),
-        string = nput.innerHTML;
+new Vue({
+    el : '.app',
+    data : {
+        text : []
+    },
+    methods : {
+        divideString : function () {
+            this.text.splice(0, this.text.length);
+            var string = document.getElementById('nputTexts').innerHTML,
+                init = 0,
+                last = string.length,
+                start = 0,
+                end = 0,
+                count = 0,
+                initArray = new Array();
 
-    return string;
-};
+                initArray['start'] = new Array();
+                initArray['end'] = new Array();
+                start = string.indexOf('<br>') + 4;
 
-function devideString(nput) {
+            while (start !== -1) {
+                initArray['start'][count] = start;
+                start = string.indexOf('<br>', start + 4);
+                count++;
+            }
 
-    var string = getTexts(nput),
-        init = 0,
-        last = string.length,
-        start = 0,
-        end = 0,
-        substrings = new Array(),
-        count = 0,
-        initArray = new Array();
+            for (var i = 0; i < initArray['start'].length; i++){
 
-        initArray['start'] = new Array();
-        initArray['end'] = new Array();
-        start = string.indexOf('<br>') + 4;
+                if (i == initArray['start'].length - 1){
+                    initArray['end'][i] = last;
+                } else {
+                    initArray['end'][i] = initArray['start'][i + 1];
+                }
 
-    while (start !== -1) {
-        initArray['start'][count] = start;
-        start = string.indexOf('<br>', start + 4);
-        count++;
-    }
-
-    for (var i = 0; i < initArray['start'].length; i++){
-
-        if (i == initArray['start'].length - 1){
-            initArray['end'][i] = last;
-        } else {
-            initArray['end'][i] = initArray['start'][i + 1];
-        }
-
-        substrings[i] = string.substring(initArray['start'][i] + 4, initArray['end'][i]);
-    }
-
-    return substrings;
-};
-
-function prepareTexts(nput, len) {
-
-    var texts = devideString(nput),
-        out = '';
-
-    for (var i = 0; i < texts.length; i++) {
-        if (texts[i].length > len) {
-
-            out += '<p>'
-                + texts[i].substring(0, len)
-                + '...<span class=\'tooltip\'>'
-                + texts[i]
-                + '</span></p>';
-
-        } else {
-
-            out += '<p>'
-                + texts[i]
-                + '<p>';
+                this.text.push(string.substring(initArray['start'][i] + 4, initArray['end'][i]));
+            }
+        },
+        checkLen : function (nput, len) {
+            console.log(nput.length);
+            return (nput.length > len)? true: false;
         }
     }
-
-    return out;
-};
-
-function run () {
-    // TODO: Start calling your function here
-    var input = prepareTexts(document.getElementsByTagName('p')[1], 50);
-    document.getElementById('output').innerHTML = input;
-
-    console.log('Code Awesome');
-};
+});
