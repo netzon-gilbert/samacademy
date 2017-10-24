@@ -30,22 +30,23 @@
             left: 100px;
         }
     </style>
-    <script src="exer.js"></script>
 </head>
 <body>
     <!--link type="text/css" rel="stylesheet" href="styles.css" /-->
     <canvas id="canvas" width="1000" height="500">canvas not supported</canvas>
-    <div class="variable">
+    <div class="variable app">
         <div class="var2 var">
             <label>radius</label><br />
-            <input type="range" class="" id="radius" /><br />
-            <label id="rout">0</label>
+            <input type="range" class="" v-model="cyRadius" v-on:mousedown="start()" v-on:mouseup="stop()" /><br />
+            <label>{{ cyRadius }}</label>
         </div>
         <div class="var1 var">
             <label>height</label><br />
-            <input type="range" class="" id="height" /><br />
-            <label id="hout">0</label>
+            <input type="range" class="" v-model="cyHeight" v-on:mousedown="start()" v-on:mouseup="stop()" /><br />
+            <label>{{ cyHeight }}</label>
         </div>
     </div>
+    <script src="vue.js"></script>
+    <script src="exer.js"></script>
 </body>
 </html>

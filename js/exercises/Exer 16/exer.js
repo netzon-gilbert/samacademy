@@ -1,118 +1,95 @@
-var CylinderClass = function () {
+new Vue({
+    el: '.app',
+    data : {
+        canvWidth : 1000,
+        canvHeight : 500,
+        cyRadius : 50,
+        cyHeight : 50,
+        animate : false,
+        canvas : document.getElementById('canvas').getContext('2d')
+    },
+    methods : {
+        drawObjs : function () {
 
-    var SCALE_SPEED = 1,
-        CANVAS_WIDTH = 1000,
-        CANVAS_HEIGHT = 500;
+            var self = this,
+                xO = 150,
+                yO = 150,
+                xC = 400,
+                yC = 200;
 
-    this.hInput;
-    this.rInput;
-    this.hOut;
-    this.rOut;
-    this.canvas;
+            function clear() {
+                self.canvas.clearRect(0, 0, self.canvWidth, self.canvHeight);
+            }
 
-    this.scaleR;
-    this.scaleH;
-    this.xO = 150;
-    this.yO = 150;
+            function drawCircle() {
+                self.canvas.beginPath();
+                self.canvas.lineWidth = 2;
+                self.canvas.fillStyle = '#CFE2F3';
+                self.canvas.strokeStyle = 'black';
+                self.canvas.lineWidth = '2px';
+                self.canvas.arc(xO, yO, self.cyRadius, 0, 2 * Math.PI);
+                self.canvas.stroke();
+                self.canvas.fill();
+            }
 
-    this.xC = 400;
-    this.yC = 100;
+            function drawCylinder() {
+                var vScale = 50 * (self.cyRadius / 100),
+                    hScale = 200*(self.cyRadius / 100),
+                    lScale = 100 * (self.cyHeight / 100);
+                    yC -= lScale;
 
-    this.init = function () {
-        var docCanvas = document.getElementById('canvas');
-        this.canvas = docCanvas.getContext('2d');
+                self.canvas.beginPath();
+                self.canvas.lineWidth = 2;
+                self.canvas.fillStyle = '#CFE2F3';
+                self.canvas.strokeStyle = 'black';
+                self.canvas.lineWidth = '2px';
+                self.canvas.moveTo(xC, yC);
+                self.canvas.lineTo(xC, yC + lScale);
+                self.canvas.bezierCurveTo(xC, yC + vScale+ lScale,
+                                        xC + hScale, yC + vScale + lScale,
+                                        xC + hScale, yC + lScale);
+                self.canvas.lineTo(xC + hScale, yC);
+                self.canvas.closePath();
+                self.canvas.stroke();
+                self.canvas.fill();
 
-        this.rOut = document.getElementById('rout');
-        this.hOut = document.getElementById('hout');
+                self.canvas.beginPath();
+                self.canvas.lineWidth = 2;
+                self.canvas.fillStyle = '#CFE2F3';
+                self.canvas.strokeStyle = 'black';
+                self.canvas.lineWidth = '2px';
+                self.canvas.moveTo(xC, yC);
+                self.canvas.bezierCurveTo(xC, yC + vScale,
+                                        xC + hScale, yC + vScale,
+                                        xC + hScale, yC);
+                self.canvas.bezierCurveTo(xC + hScale, yC - vScale,
+                                        xC, yC - vScale,
+                                        xC, yC);
+                self.canvas.closePath();
+                self.canvas.stroke();
+                self.canvas.fill();
+            }
 
-        this.hInput = document.getElementById('height');
-        this.rInput = document.getElementById('radius');
+            function draw(){
+                setTimeout(function () {
+                    if(self.animate){
+                        clear();
+                        drawCircle();
+                        drawCylinder();
+                        self.drawObjs();
+                    }
+                }, 30);
+            }
 
-        this.inputData();
-        this.outData();
+            draw();
+        },
+        start : function () {
+            this.animate = true;
+            this.drawObjs();
+        },
+        stop : function () {
+            this.animate = false;
+        }
 
-        this.drawCircle();
-    };
-
-    this.outData = function () {
-        this.rOut.innerHTML = this.scaleR;
-        this.hOut.innerHTML = this.scaleH;
-    };
-
-    this.inputData = function () {
-        this.scaleR = this.rInput.value;
-        this.scaleH = this.hInput.value;
-    };
-
-    this.drawCylinder = function () {
-        var vScale = 50 * (this.scaleR / 100),
-            hScale = 200*(this.scaleR / 100),
-            lScale = 100 * (this.scaleH / 100);
-
-        this.canvas.beginPath();
-        this.canvas.lineWidth = 2;
-        this.canvas.fillStyle = '#CFE2F3';
-        this.canvas.strokeStyle = 'black';
-        this.canvas.lineWidth = '2px';
-        this.canvas.moveTo(this.xC, this.yC);
-        this.canvas.lineTo(this.xC, this.yC + lScale);
-        this.canvas.bezierCurveTo(this.xC, this.yC + vScale+ lScale,
-                                this.xC + hScale, this.yC + vScale + lScale,
-                                this.xC + hScale, this.yC + lScale);
-        this.canvas.lineTo(this.xC + hScale, this.yC);
-        this.canvas.closePath();
-        this.canvas.stroke();
-        this.canvas.fill();
-
-        this.canvas.beginPath();
-        this.canvas.lineWidth = 2;
-        this.canvas.fillStyle = '#CFE2F3';
-        this.canvas.strokeStyle = 'black';
-        this.canvas.lineWidth = '2px';
-        this.canvas.moveTo(this.xC, this.yC);
-        this.canvas.bezierCurveTo(this.xC, this.yC + vScale,
-                                this.xC + hScale, this.yC + vScale,
-                                this.xC + hScale, this.yC);
-        this.canvas.bezierCurveTo(this.xC + hScale, this.yC - vScale,
-                                this.xC, this.yC - vScale,
-                                this.xC, this.yC);
-        this.canvas.closePath();
-        this.canvas.stroke();
-        this.canvas.fill();
-
-    };
-
-    this.drawCircle = function () {
-        this.canvas.beginPath();
-        this.canvas.lineWidth = 2;
-        this.canvas.fillStyle = '#CFE2F3';
-        this.canvas.strokeStyle = 'black';
-        this.canvas.lineWidth = '2px';
-        this.canvas.arc(this.xO, this.yO, this.scaleR, 0, 2 * Math.PI);
-        this.canvas.stroke();
-        this.canvas.fill();
-    };
-
-    this.erase = function () {
-        this.canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    };
-
-    this.render = function () {
-        this.inputData();
-        this.outData();
-
-        this.erase();
-        this.drawCircle();
-        this.drawCylinder();
-    };
-};
-
-var cylinder = new CylinderClass();
-
-window.onload = function(){
-    cylinder.init();
-
-    setInterval(function(){
-        cylinder.render();
-    }, 60);
-};
+    }
+});
