@@ -29,7 +29,7 @@
                         <label>type</label>
                     </div>
                     <div class="inputs" id="">
-                        <input type="number" v-model="price" v-on:keyup="calculate()" /><br />
+                        <input type="number" v-model="price" v-on:keyup="calculate()" v-on:mouseup="calculate()" /><br />
                         <label>price</label>
                     </div>
                 </div>
@@ -85,61 +85,59 @@
                             <option value="15" >15%</option>
                         </select><br />
                         <label>yearly increase in property value</label>
-                        <div class="icon icon-arrow-head" id="arrow2"></div>
+                        <div class="icon icon-arrow-head appres" id="arrow2"></div>
                      </div>
                 </div>
             </div>
             <div class="app-foot" >
                 <div class="foot-input foot-input1">
-                    <div class="icon icon-arrow-head foot-arrow" id="arrow3"></div>
-                    <div class="foot-boxes" id="foot-box1">
-                        <div>{{ rent_income }}</div>
+                    <div class="icon icon-arrow-head foot-arrow rents" id="arrow3"></div>
+                    <div class="foot-boxes rents" id="foot-box1">
+                        <div>{{ rentIncome }}</div>
                         <label>yearly rental income</label>
                     </div>
-                    <div class="foot-boxes" id="foot-box2">
-                        <div>{{ agency_fees }}</div>
+                    <div class="foot-boxes rents" id="foot-box2">
+                        <div>{{ agencyFees }}</div>
                         <label>yearly maint & agency fees (25%)</label>
                     </div>
-                    <div class="foot-boxes" id="foot-box3">
-                        <div>{{ yearly_total }}</div>
+                    <div class="foot-boxes rents" id="foot-box3">
+                        <div>{{ yearlyTotal }}</div>
                         <label>yearly net total</label>
                     </div>
-                    <div class="icon icon-arrow-head foot-arrow" id="arrow4"></div>
+                    <div class="icon icon-arrow-head foot-arrow rents" id="arrow4"></div>
                 </div>
-                <div class="foot-input foot-input2">
-                    <div class="foot-boxes" id="foot-box4">
-                        <div>{{ after_term }}</div>
+                <div class="foot-input foot-input2 appres">
+                    <div class="foot-boxes appres" id="foot-box4">
+                        <div>{{ afterTerm }}</div>
                         <label>property value after term (compounded)</label>
                     </div>
-                    <div class="icon icon-arrow-head foot-arrow" id="arrow5"></div>
+                    <div class="icon icon-arrow-head foot-arrow appres" id="arrow5"></div>
                 </div>
                 <div class="foot-input foot-input3">
-                    <div class="foot-total foot-total1" id="foot-total1">
-                        <div>{{ profit_OT }}</div>
+                    <div class="foot-total foot-total1 rents" id="foot-total1">
+                        <div>{{ profitOT }}</div>
                         <label>rental profit over term</label>
                     </div>
-                    <div class="foot-total foot-total2" id="foot-total2">
-                        <div>{{ profit_AT }}</div>
+                    <div class="foot-total foot-total2 appres" id="foot-total2">
+                        <div>{{ profitAT }}</div>
                         <label>profit after term</label>
                     </div>
-                    <div class="icon icon-curly-arrow" id="curly-arrow"></div>
-                    <div class="grand-total grand-total1" id="foot-total3">
-                        <div>{{ grand_PFT }}</div>
+                    <div class="icon icon-curly-arrow grands" id="curly-arrow"></div>
+                    <div class="grand-total grand-total1 grands" id="foot-total3">
+                        <div>{{ grandPFT }}</div>
                         <label>total profit after term</label>
                     </div>
-                    <div class="grand-total grand-total2" id="foot-total4">
-                        <div>{{ return_invest }} %</div>
+                    <div class="grand-total grand-total2 grands" id="foot-total4">
+                        <div>{{ returnInvest }} %</div>
                         <label>return on investment</label>
                     </div>
                 </div>
             </div>
-            <div class="footer" id="footer">
+            <div class="footer grands" id="footer">
                 Disclaimer: This model is provided as an approximation of future financial performance. The results presented are hypothetical and may not reflect the actual growth of your own investment. Crowngate and its affiliates are not responsible for the consequences of any decisions or actions taken in reliance upon or as a result of the information provided. This calculator is designed to be informational and does not constitute investment advice.
             </div>
         </div>
         <script type="text/javascript" src="js/vue.js" ></script>
         <script type="text/javascript" src="js/index.js" ></script>
-        <script type="text/javascript" >
-        </script>
     </body>
 </html>

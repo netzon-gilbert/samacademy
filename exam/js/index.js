@@ -1,14 +1,14 @@
 var vue = new Vue({
     el : '.app',
     data : {
-        rent_income : 0,
-        agency_fees : 0,
-        yearly_total : 0,
-        after_term : 0,
-        profit_OT : 0,
-        profit_AT : 0,
-        grand_PFT : 0,
-        return_invest : 0,
+        rentIncome : 0,
+        agencyFees : 0,
+        yearlyTotal : 0,
+        afterTerm : 0,
+        profitOT : 0,
+        profitAT : 0,
+        grandPFT : 0,
+        returnInvest : 0,
 
         type : 'Studio',
         price : 0,
@@ -17,74 +17,110 @@ var vue = new Vue({
         capital : 0,
     },
     methods : {
-        init : function () {
-            console.log('initialized');
-        },
         shortTermLink : function () {
             alert('Comming soon.');
         },
         calculate : function () {
-            var self = this;
-                self.price = parseInt(self.price);
-                self.yeld = parseInt(self.yeld);
-                self.term = parseInt(self.term);
-                self.capital = parseInt(self.capital);
+            this.price = (this.price == NaN || this.price == null)? 0: this.price ;
+            var rentsClass = 'rents',
+                appresClass = 'appres',
+                grandsClass = 'grands',
+                s = this;
 
-            function rent_income() {
-                self.rent_income = 0;
+                s.price = parseInt(s.price);
+                s.yeld = parseInt(s.yeld);
+                s.term = parseInt(s.term);
+                s.capital = parseInt(s.capital);
+
+            function rentIncome() {
+                s.rentIncome = 0;
             }
-            function agency_fees() {
-                self.agency_fees = 0;
+
+            function agencyFees() {
+                s.agencyFees = 0;
             }
-            function yearly_total() {
-                self.yearly_total = 0;
+
+            function yearlyTotal() {
+                s.yearlyTotal = 0;
             }
-            function after_term() {
-                self.after_term = 0;
+
+            function afterTerm() {
+                s.afterTerm = 0;
             }
-            function profit_OT() {
-                self.profit_OT = 0;
+
+            function profitOT() {
+                s.profitOT = 0;
             }
-            function profit_AT() {
-                self.profit_AT = 0;
+
+            function profitAT() {
+                s.profitAT = 0;
             }
-            function grand_PFT() {
-                self.grand_PFT = 0;
+
+            function grandPFT() {
+                s.grandPFT = 0;
             }
-            function return_invest() {
-                self.return_invest = 0;
+
+            function returnInvest() {
+                s.returnInvest = 0;
             }
+
+            function toggleView(className, show) {
+                var els = document.getElementsByClassName(className);
+                if (show) {
+                   [].forEach.call(els, function (el) {
+                        el.style.visibility = 'visible';
+                   });
+                } else {
+                    [].forEach.call(els, function (el) {
+                        el.style.visibility = 'hidden';
+                   });
+                }
+            }
+
             // rent
             if (
-                self.price >= 600 &&
-                self.term !== 0 &&
-                self.yeld !== 0
+                s.price >= 600 &&
+                s.term !== 0 &&
+                s.yeld !== 0
             ) {
-                console.log('yeld view');
+                rentIncome();
+                agencyFees();
+                yearlyTotal();
+                profitOT();
+                toggleView(rentsClass, true);
+            } else {
+                toggleView(rentsClass, false);
             }
 
             // appreciation
             if (
-                self.price !== 0 &&
-                self.capital !== 0 &&
-                self.term !== 0
+                s.price > 0 &&
+                s.capital !== 0 &&
+                s.term !== 0
             ) {
-                console.log('appreciation view');
+                afterTerm();
+                profitAT();
+                toggleView(appresClass, true);
+            } else {
+                toggleView(appresClass, false);
             }
 
             // grand
             if (
-                self.price >= 600 &&
-                self.term !== 0 &&
-                self.yeld !== 0 &&
-                self.capital !== 0
+                s.price >= 600 &&
+                s.term !== 0 &&
+                s.yeld !== 0 &&
+                s.capital !== 0
             ) {
-                console.log('grand total view');
+                grandPFT();
+                returnInvest();
+                toggleView(grandsClass, true);
+            } else {
+                toggleView(grandsClass, false);
             }
-            console.log('calculate function executed');
+
         }
     }
 });
 
-vue.init();
-
+vue.calculate();
