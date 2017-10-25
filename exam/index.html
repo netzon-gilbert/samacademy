@@ -13,56 +13,56 @@
                 <div class="icon icon-app-icon head-icon"></div>
                 <div class="browse">
                     <a class="link link-active">LONG TERM</a>
-                    <a class="link" onclick="shortTerm()">SHORT TERM</a>
+                    <a class="link" v-on:click="shortTermLink()">SHORT TERM</a>
                 </div>
             </div>
             <div class="app-body" id="" >
                 <div class="input-box" id="">
                     <div class="inputs" id="" >
-                        <select id="type">
-                            <option>Studio</option>
-                            <option>One Bedroom</option>
-                            <option>Two Bedrooms</option>
-                            <option>Three Bedrooms</option>
-                            <option>Four Bedrooms</option>
+                        <select v-model="type" v-on:mouseup="calculate()">
+                            <option value="Studio" >Studio</option>
+                            <option value="One Bedroom" >One Bedroom</option>
+                            <option value="Two Bedrooms" >Two Bedrooms</option>
+                            <option value="Three Bedrooms" >Three Bedrooms</option>
+                            <option value="Four Bedrooms" >Four Bedrooms</option>
                         </select><br />
                         <label>type</label>
                     </div>
                     <div class="inputs" id="">
-                        <input type="number" id="price" /><br />
+                        <input type="number" v-model="price" v-on:keyup="calculate()" /><br />
                         <label>price</label>
                     </div>
                 </div>
                 <div class="input-box bot-box2" id="">
                     <div class="inputs" id="">
                         <h2>Rental Yeld</h2>
-                        <select id="yeld">
-                            <option>Please select</option>
-                            <option>1%</option>
-                            <option>2%</option>
-                            <option>3%</option>
-                            <option>4%</option>
-                            <option>5%</option>
-                            <option>6%</option>
-                            <option>7%</option>
-                            <option>8%</option>
-                            <option>9%</option>
-                            <option>10%</option>
-                            <option>11%</option>
-                            <option>12%</option>
+                        <select v-model="yeld" v-on:mouseup="calculate()">
+                            <option value="0" >Please select</option>
+                            <option value="1" >1%</option>
+                            <option value="2" >2%</option>
+                            <option value="3" >3%</option>
+                            <option value="4" >4%</option>
+                            <option value="5" >5%</option>
+                            <option value="6" >6%</option>
+                            <option value="7" >7%</option>
+                            <option value="8" >8%</option>
+                            <option value="9" >9%</option>
+                            <option value="10" >10%</option>
+                            <option value="11" >11%</option>
+                            <option value="12" >12%</option>
                         </select><br />
                         <label>monthly rental income</label>
                     </div>
                     <div class="icon icon-arrow-head" id="arrow1"></div>
-                    <div class="inputs" id="">
-                        <select id="term">
-                            <option>Please select</option>
-                            <option>3</option>
-                            <option>5</option>
-                            <option>7</option>
-                            <option>10</option>
-                            <option>12</option>
-                            <option>15</option>
+                    <div class="inputs">
+                        <select v-model="term" v-on:mouseup="calculate()">
+                            <option value="0" >Please select</option>
+                            <option value="3" >3</option>
+                            <option value="5" >5</option>
+                            <option value="7" >7</option>
+                            <option value="10" >10</option>
+                            <option value="12" >12</option>
+                            <option value="15" >15</option>
                         </select><br />
                         <label>term (years)</label>
                     </div>
@@ -70,19 +70,19 @@
                 <div class="bot-box1">
                      <div class="inputs input-box" id="">
                         <h2>Capital Appreciation</h2>
-                        <select id="capital">
-                            <option>Please select</option>
-                            <option>5%</option>
-                            <option>6%</option>
-                            <option>7%</option>
-                            <option>8%</option>
-                            <option>9%</option>
-                            <option>10%</option>
-                            <option>11%</option>
-                            <option>12%</option>
-                            <option>13%</option>
-                            <option>14%</option>
-                            <option>15%</option>
+                        <select v-model="capital" v-on:mouseup="calculate()">
+                            <option value="0" >Please select</option>
+                            <option value="5" >5%</option>
+                            <option value="6" >6%</option>
+                            <option value="7" >7%</option>
+                            <option value="8" >8%</option>
+                            <option value="9" >9%</option>
+                            <option value="10" >10%</option>
+                            <option value="11" >11%</option>
+                            <option value="12" >12%</option>
+                            <option value="13" >13%</option>
+                            <option value="14" >14%</option>
+                            <option value="15" >15%</option>
                         </select><br />
                         <label>yearly increase in property value</label>
                         <div class="icon icon-arrow-head" id="arrow2"></div>
@@ -93,42 +93,42 @@
                 <div class="foot-input foot-input1">
                     <div class="icon icon-arrow-head foot-arrow" id="arrow3"></div>
                     <div class="foot-boxes" id="foot-box1">
-                        <div id="rent_income">0</div>
+                        <div>{{ rent_income }}</div>
                         <label>yearly rental income</label>
                     </div>
                     <div class="foot-boxes" id="foot-box2">
-                        <div id="agency_fees">0</div>
+                        <div>{{ agency_fees }}</div>
                         <label>yearly maint & agency fees (25%)</label>
                     </div>
                     <div class="foot-boxes" id="foot-box3">
-                        <div id="yearly_total">0</div>
+                        <div>{{ yearly_total }}</div>
                         <label>yearly net total</label>
                     </div>
                     <div class="icon icon-arrow-head foot-arrow" id="arrow4"></div>
                 </div>
                 <div class="foot-input foot-input2">
                     <div class="foot-boxes" id="foot-box4">
-                        <div id="after_term">0</div>
+                        <div>{{ after_term }}</div>
                         <label>property value after term (compounded)</label>
                     </div>
                     <div class="icon icon-arrow-head foot-arrow" id="arrow5"></div>
                 </div>
                 <div class="foot-input foot-input3">
                     <div class="foot-total foot-total1" id="foot-total1">
-                        <div class="" id="profit_OT">0</div>
+                        <div>{{ profit_OT }}</div>
                         <label>rental profit over term</label>
                     </div>
                     <div class="foot-total foot-total2" id="foot-total2">
-                        <div class="" id="profit_AT" >0</div>
+                        <div>{{ profit_AT }}</div>
                         <label>profit after term</label>
                     </div>
                     <div class="icon icon-curly-arrow" id="curly-arrow"></div>
                     <div class="grand-total grand-total1" id="foot-total3">
-                        <div class="" id="grand_PFT">054634563456</div>
+                        <div>{{ grand_PFT }}</div>
                         <label>total profit after term</label>
                     </div>
                     <div class="grand-total grand-total2" id="foot-total4">
-                        <div class="" id="return_invest">0%</div>
+                        <div>{{ return_invest }} %</div>
                         <label>return on investment</label>
                     </div>
                 </div>

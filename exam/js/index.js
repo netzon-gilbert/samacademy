@@ -1,255 +1,90 @@
-/*var OutputClass = function (nput) {
-    this.self = nput;
-
-    this.init = function () {
-
-    };
-
-    this.hide = function () {
-        this.self.forEach(function (value, index, nput){
-            document.getElementById(value).style.visibility = 'hidden';
-        });
-    };
-
-    this.show = function () {
-         this.self.forEach(function (value, index, nput){
-            document.getElementById(value).style.visibility = 'visible';
-        });
-    };
-};
-
-var CalculatorClass = function () {
-
-    this.cart = [];
-    this.outCart = [];
-
-    this.inputValues = [];
-    this.filtered = [];
-
-    this.rentalYeld = new OutputClass([
-            'arrow3',
-            'foot-box1',
-            'foot-box2',
-            'foot-total1',
-            'foot-box3',
-            'arrow4'
-    ]);
-
-    this.capitalApp = new OutputClass([
-            'arrow2',
-            'foot-total2',
-            'foot-box4',
-            'arrow5'
-    ]);
-
-    this.grandTotal = new OutputClass([
-            'foot-total3',
-            'foot-total4',
-            'curly-arrow',
-     ]);
-
-    this.footerText = new OutputClass([
-            'footer'
-     ]);
-
-    this.init = function () {
-        this.cart['price'] = document.getElementById('price');
-        this.cart['income'] = document.getElementById('yeld');
-        this.cart['type'] = document.getElementById('type');
-        this.cart['term'] = document.getElementById('term');
-        this.cart['capital'] = document.getElementById('capital');
-
-        this.outCart['rent_income'] = document.getElementById('rent_income');
-        this.outCart['agency_fees'] = document.getElementById('agency_fees');
-        this.outCart['yearly_total'] = document.getElementById('yearly_total');
-        this.outCart['after_term'] = document.getElementById('after_term');
-        this.outCart['profit_OT'] = document.getElementById('profit_OT');
-        this.outCart['profit_AT'] = document.getElementById('profit_AT');
-        this.outCart['grand_PFT'] = document.getElementById('grand_PFT');
-        this.outCart['return_invest'] = document.getElementById('return_invest');
-
-        calculator.rentalYeld.hide();
-        calculator.capitalApp.hide();
-        calculator.grandTotal.hide();
-        calculator.footerText.hide();
-
-        this.fetchInput();
-    };
-
-    this.fetchInput = function () {
-        this.inputValues['price'] = this.cart['price'].value;
-        this.inputValues['income'] = this.cart['income']
-                                    .options[this.cart['income']
-                                    .selectedIndex]
-                                    .value;
-
-        this.inputValues['type'] = this.cart['type']
-                                    .options[this.cart['type']
-                                    .selectedIndex]
-                                    .value;
-
-        this.inputValues['term'] = this.cart['term']
-                                    .options[this.cart['term']
-                                    .selectedIndex]
-                                    .value;
-
-        this.inputValues['capital'] = this.cart['capital']
-                                    .options[this.cart['capital']
-                                    .selectedIndex]
-                                    .value;
-    };
-
-    this.filterValues = function () {
-        if (!this.inputValues['price'] == ''){
-            this.filtered['price'] = parseInt(this.inputValues['price']);
-        } else{
-            this.filtered['price'] = null;
-        }
-
-        if (!this.cart['income'].selectedIndex == 0){
-            var temp = this.inputValues['income'];
-                temp = temp.substring(0, temp.length - 1);
-            this.filtered['income'] = parseInt(temp);
-        } else {
-            this.filtered['income'] = null;
-        }
-
-        if (!this.cart['term'].selectedIndex == 0) {
-            this.filtered['term'] = parseInt(this.inputValues['term']);
-        } else {
-            this.filtered['term'] = null;
-        }
-
-        if (!this.cart['capital'].selectedIndex == 0) {
-            var temp = this.inputValues['capital'];
-                temp = temp.substring(0, temp.length - 1);
-            this.filtered['capital'] = parseInt(temp);
-        } else {
-            this.filtered['capital'] = null;
-        }
-
-    };
-    this.calcProfitVAT = function (terms, price, percent) {
-        var temp = 0,
-            tempPrice = price;
-
-        for (var i = 1; i <= terms; i++) {
-            temp = tempPrice + (tempPrice * (percent / 100));
-            tempPrice = temp;
-        }
-        return tempPrice;
-    };
-
-    this.display = function () {
-        this.fetchInput();
-        this.filterValues();
-
-        // yeld
-        if (
-            this.filtered['price'] >= 600 &&
-            this.filtered['term'] !== null &&
-            this.filtered['income'] !== null
-        ) {
-            var rentalIncome = Math.round(
-                    this.filtered['price'] *
-                    this.filtered['term'] *
-                    (this.filtered['income'] / 100)
-                );
-
-            calculator.rentalYeld.show();
-            this.outCart['rent_income'].innerHTML = this.filtered['price'] -
-                                                    rentalIncome;
-
-            this.outCart['agency_fees'].innerHTML = Math.round(rentalIncome * 0.25);
-            this.outCart['yearly_total'].innerHTML = rentalIncome *
-                                                    this.filtered['price'];
-            this.outCart['profit_OT'].innerHTML = this.filtered['term'] *
-                                                this.filtered['price'];
-        } else {
-            calculator.rentalYeld.hide();
-        }
-
-        // appreciation
-        if (
-            this.filtered['price'] !== null &&
-            this.filtered['capital'] !== null &&
-            this.filtered['term'] !== null
-        ) {
-            var vat = Math.round(this.calcProfitVAT(
-                            this.filtered['term'],
-                            this.filtered['price'],
-                            this.filtered['capital']
-                ));
-            calculator.capitalApp.show();
-            this.outCart['after_term'].innerHTML = vat;
-            this.outCart['profit_AT'].innerHTML = vat - this.filtered['price'];
-        } else {
-            calculator.capitalApp.hide();
-        }
-
-        // grand
-        if (
-            this.filtered['price'] >= 600 &&
-            this.filtered['term'] !== null &&
-            this.filtered['capital'] !== null &&
-            this.filtered['income'] !== null
-        ) {
-            var rentalInc = Math.round(
-                    this.filtered['price'] *
-                    this.filtered['term'] *
-                    (this.filtered['income'] / 100)
-            );
-            calculator.grandTotal.show();
-            calculator.footerText.show();
-            this.outCart['grand_PFT'].innerHTML = rentalInc * 1542;
-            this.outCart['return_invest'].innerHTML = Math.round((rentalInc * 1542 )/
-                                                    (100*this.filtered['price'])) + '%';
-        } else {
-            calculator.grandTotal.hide();
-            calculator.footerText.hide();
-        }
-    };
-
-    this.refresh = function () {
-        this.display();
-    };
-};
-
-var calculator = new CalculatorClass();
-
-window.onload = function () {
-
-    calculator.init();
-    setInterval(function () {
-        calculator.refresh();
-    }, 100);
-
-};
-
-function shortTerm() {
-
-    alert('Comming soon.');
-}*/
-
 var vue = new Vue({
     el : '.app',
     data : {
-        out : [],
+        rent_income : 0,
+        agency_fees : 0,
+        yearly_total : 0,
+        after_term : 0,
+        profit_OT : 0,
+        profit_AT : 0,
+        grand_PFT : 0,
+        return_invest : 0,
+
+        type : 'Studio',
+        price : 0,
+        yeld : 0,
+        term : 0,
+        capital : 0,
     },
     methods : {
         init : function () {
-            this.out['rent_income'] = 0;
-            this.out['agency_fees'] = 0;
-            this.out['yearly_total'] = 0;
-            this.out['after_term'] = 0;
-            this.out['profit_OT'] = 0;
-            this.out['profit_AT'] = 0;
-            this.out['grand_PFT'] = 0;
-            this.out['return_invest'] = 0;
             console.log('initialized');
+        },
+        shortTermLink : function () {
+            alert('Comming soon.');
+        },
+        calculate : function () {
+            var self = this;
+                self.price = parseInt(self.price);
+                self.yeld = parseInt(self.yeld);
+                self.term = parseInt(self.term);
+                self.capital = parseInt(self.capital);
+
+            function rent_income() {
+                self.rent_income = 0;
+            }
+            function agency_fees() {
+                self.agency_fees = 0;
+            }
+            function yearly_total() {
+                self.yearly_total = 0;
+            }
+            function after_term() {
+                self.after_term = 0;
+            }
+            function profit_OT() {
+                self.profit_OT = 0;
+            }
+            function profit_AT() {
+                self.profit_AT = 0;
+            }
+            function grand_PFT() {
+                self.grand_PFT = 0;
+            }
+            function return_invest() {
+                self.return_invest = 0;
+            }
+            // rent
+            if (
+                self.price >= 600 &&
+                self.term !== 0 &&
+                self.yeld !== 0
+            ) {
+                console.log('yeld view');
+            }
+
+            // appreciation
+            if (
+                self.price !== 0 &&
+                self.capital !== 0 &&
+                self.term !== 0
+            ) {
+                console.log('appreciation view');
+            }
+
+            // grand
+            if (
+                self.price >= 600 &&
+                self.term !== 0 &&
+                self.yeld !== 0 &&
+                self.capital !== 0
+            ) {
+                console.log('grand total view');
+            }
+            console.log('calculate function executed');
         }
     }
 });
 
- vue.init();
+vue.init();
 
