@@ -1,4 +1,4 @@
-var OutputClass = function (nput) {
+/*var OutputClass = function (nput) {
     this.self = nput;
 
     this.init = function () {
@@ -229,5 +229,27 @@ window.onload = function () {
 function shortTerm() {
 
     alert('Comming soon.');
-}
+}*/
+
+var vue = new Vue({
+    el : '.app',
+    data : {
+        out : [],
+    },
+    methods : {
+        init : function () {
+            this.out['rent_income'] = 0;
+            this.out['agency_fees'] = 0;
+            this.out['yearly_total'] = 0;
+            this.out['after_term'] = 0;
+            this.out['profit_OT'] = 0;
+            this.out['profit_AT'] = 0;
+            this.out['grand_PFT'] = 0;
+            this.out['return_invest'] = 0;
+            console.log('initialized');
+        }
+    }
+});
+
+ vue.init();
 
