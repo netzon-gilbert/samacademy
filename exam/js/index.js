@@ -25,6 +25,7 @@ var vue = new Vue({
             var rentsClass = 'rents',
                 appresClass = 'appres',
                 grandsClass = 'grands',
+                viewCollapse = true,
                 s = this;
 
                 s.price = parseInt(s.price);
@@ -64,15 +65,22 @@ var vue = new Vue({
                 s.returnInvest = 0;
             }
 
-            function toggleView(className, show) {
+            function toggleView(className, show, collapse) {
                 var els = document.getElementsByClassName(className);
                 if (show) {
                    [].forEach.call(els, function (el) {
                         el.style.visibility = 'visible';
+                        el.style.position = 'relative';
                    });
                 } else {
                     [].forEach.call(els, function (el) {
                         el.style.visibility = 'hidden';
+                        if (collapse) {
+                            el.style.position = 'absolute';
+                        } else {
+                            el.style.position = 'relative';
+                        }
+
                    });
                 }
             }
@@ -87,9 +95,9 @@ var vue = new Vue({
                 agencyFees();
                 yearlyTotal();
                 profitOT();
-                toggleView(rentsClass, true);
+                toggleView(rentsClass, true, viewCollapse);
             } else {
-                toggleView(rentsClass, false);
+                toggleView(rentsClass, false, viewCollapse);
             }
 
             // appreciation
@@ -100,9 +108,9 @@ var vue = new Vue({
             ) {
                 afterTerm();
                 profitAT();
-                toggleView(appresClass, true);
+                toggleView(appresClass, true, viewCollapse);
             } else {
-                toggleView(appresClass, false);
+                toggleView(appresClass, false, viewCollapse);
             }
 
             // grand
@@ -114,13 +122,15 @@ var vue = new Vue({
             ) {
                 grandPFT();
                 returnInvest();
-                toggleView(grandsClass, true);
+                viewCollapse = false;
+                toggleView(grandsClass, true, viewCollapse);
             } else {
-                toggleView(grandsClass, false);
+                viewCollapse = true;
+                toggleView(grandsClass, false, viewCollapse);
             }
 
         }
     }
 });
 
-vue.calculate();
+//vue.calculate();

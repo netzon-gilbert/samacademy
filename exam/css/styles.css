@@ -150,22 +150,18 @@
     left: 100px;
     margin-bottom: 30px;
 }
-#arrow2{
-    position: relative;
-    top: 100px;
-    left: 90px;
-    margin-bottom: 30px;
-}
 
 /* foot designs */
 .foot-boxes{
     text-align: center;
-    color: ;
+    max-width: 240px;
+    min-width: 240px;
+    max-height: 70px;
+    min-height: 70px;
 }
 .foot-boxes div{
     width: 240px;
     text-align: center;
-    margin: auto;
     margin-top: 20px;
     background-color: #EEE;
     font-size: 24px;
@@ -175,34 +171,13 @@
 label{
     color: #A09393;
 }
-.foot-arrow{
-    margin: auto;
-    margin-top: 20px;
-}
-.foot-input{
-    position: relative;
-}
-.foot-input1{
-    top: -50px;
-    left: -220px;
-}
-.foot-input2{
-    top: -320px;
-    left: 220px;
-}
-.foot-input3{
-    top: -150px;
-    left: 170px;
-}
-.foot-input2 .icon{
-    position: relative;
-    top: 140px;
-    left: 0px;
-}
+
 .foot-total{
-    position: relative;
-    display: inline-block;
     text-align: center;
+    max-width: 240px;
+    min-width: 240px;
+    max-height: 70px;
+    min-height: 70px;
 }
 .foot-total div{
     width: 240px;
@@ -216,16 +191,7 @@ label{
     -webkit-font-smoothing: antialiased;
     font-family: Avenir;
 }
-.foot-total1{
-    top: 0px;
-    left: -130px;
-}
-.foot-total2{
-    top: 0px;
-    left: 70px;
-}
 .grand-total{
-    position: relative;
     text-align: center;
 }
 .grand-total div{
@@ -237,17 +203,8 @@ label{
     width: 100%;
     margin: 20px;
 }
-.grand-total1{
-     top: 0px;
-    left: -180px;
-}
-.grand-total2{
-     top: 0px;
-    left: -180px;
-}
 .footer{
     position: relative;
-    top: -100px;
     margin: auto;
     margin: 0;
     padding: 0;
@@ -256,4 +213,56 @@ label{
     vertical-align: baseline;
     text-align: justify;
     color: #939393;
+}
+
+/*.grands ,*/ .rents, .appres{
+    position: absolute;
+    top: 800px;
+    left: 0px;
+}
+.grands/* , .rents,.appres*/ {
+    visibility: hidden;
+}
+
+#arrow2{
+    top: 800px;
+    left: 140px;
+}
+#arrow3{
+    top: 1130px;
+    left: 140px;
+}
+#foot-box1{
+    top: 850px;
+    left: 40px;
+}
+#foot-box2{
+    top: 930px;
+    left: 40px;
+}
+#foot-box3{
+    top: 1010px;
+    left: 40px;
+}
+#foot-box4{
+    top: 1200px;
+    left: 40px;
+}
+
+
+#arrow3{
+    top: 800px;
+    left: 140px;
+}
+#arrow4{
+    top: 1130px;
+    left: 140px;
+}
+#foot-box5{
+    top: 850px;
+    left: 40px;
+}
+#foot-box6{
+    top: 1200px;
+    left: 500px;
 }
