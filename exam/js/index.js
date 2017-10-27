@@ -26,12 +26,17 @@ var vue = new Vue({
                 appresClass = 'appres',
                 grandsClass = 'grands',
                 viewCollapse = true,
-                s = this;
+                s = this,
+                elPos = [];
 
                 s.price = parseInt(s.price);
                 s.yeld = parseInt(s.yeld);
                 s.term = parseInt(s.term);
                 s.capital = parseInt(s.capital);
+
+                elPos['rents'] = [800, 1130, 850, 930, 1010, 1200];
+                elPos['appres'] = [750, 1130, 900, 1200];
+                elPos['grands'] = [1320, 1450];
 
             function rentIncome() {
                 s.rentIncome = 0;
@@ -66,21 +71,19 @@ var vue = new Vue({
             }
 
             function toggleView(className, show, collapse) {
-                var els = document.getElementsByClassName(className);
+                var els = document.getElementsByClassName(className),
+                    count = 0;
+
                 if (show) {
                    [].forEach.call(els, function (el) {
                         el.style.visibility = 'visible';
-                        el.style.position = 'relative';
+                        el.style.top = elPos[className][count]+ 'px';
+                        count++;
                    });
                 } else {
                     [].forEach.call(els, function (el) {
                         el.style.visibility = 'hidden';
-                        if (collapse) {
-                            el.style.position = 'absolute';
-                        } else {
-                            el.style.position = 'relative';
-                        }
-
+                        el.style.top = '0px';
                    });
                 }
             }
@@ -133,4 +136,4 @@ var vue = new Vue({
     }
 });
 
-//vue.calculate();
+vue.calculate();

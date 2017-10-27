@@ -193,6 +193,7 @@ label{
 }
 .grand-total{
     text-align: center;
+    margin-bottom: 20px;
 }
 .grand-total div{
     background-color: transparent;
@@ -204,7 +205,6 @@ label{
     margin: 20px;
 }
 .footer{
-    position: relative;
     margin: auto;
     margin: 0;
     padding: 0;
@@ -215,54 +215,7 @@ label{
     color: #939393;
 }
 
-/*.grands ,*/ .rents, .appres{
+.grands, .rents, .appres{
     position: absolute;
-    top: 800px;
-    left: 0px;
-}
-.grands/* , .rents,.appres*/ {
     visibility: hidden;
-}
-
-#arrow2{
-    top: 800px;
-    left: 140px;
-}
-#arrow3{
-    top: 1130px;
-    left: 140px;
-}
-#foot-box1{
-    top: 850px;
-    left: 40px;
-}
-#foot-box2{
-    top: 930px;
-    left: 40px;
-}
-#foot-box3{
-    top: 1010px;
-    left: 40px;
-}
-#foot-box4{
-    top: 1200px;
-    left: 40px;
-}
-
-
-#arrow3{
-    top: 800px;
-    left: 140px;
-}
-#arrow4{
-    top: 1130px;
-    left: 140px;
-}
-#foot-box5{
-    top: 850px;
-    left: 40px;
-}
-#foot-box6{
-    top: 1200px;
-    left: 500px;
 }
