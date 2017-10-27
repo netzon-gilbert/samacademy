@@ -346,17 +346,20 @@ window.onload = function () {
 */
 var vue = new Vue({
     el : ".app",
-    data : {
-        nputLab : '',
-        nputVal : '',
-        nputCol : '#000',
-
-        pies : []
+    data : function() {
+        return {
+            nputLab : '',
+            nputVal : '',
+            nputCol : '#000000',
+            pies : []
+        }
     },
     methods : {
-        init : function () {
-            var canv = document.getElementById('chart').getContext('2d');
-            function drawCircles() {
+        draw : function () {
+            var s = this,
+                canv = document.getElementById('chart').getContext('2d');
+
+            function circles() {
                 canv.shadowOffsetX = 0;
                 canv.shadowOffsetY = 0;
                 canv.shadowBlur = 3;
@@ -376,58 +379,52 @@ var vue = new Vue({
                 canv.shadowBlur = 0;
                 canv.shadowColor = 'none';
             }
-            drawCircles();
+
+            function semiCircles(canv, percent, rotation) {
+                canv.save();
+                canv.beginPath();
+                canv.lineWidth = 33;
+                canv.strokeStyle = this.color;
+                canv.translate(100, 100);
+                canv.rotate(2 * rotation * Math.PI);
+                canv.arc(0, 0, 73, 0, percent * 2 * Math.PI);
+                canv.stroke();
+                canv.restore();
+            }
+
+            circles();
             console.log('initialized');
         },
         add : function () {
-            var ctrsBox = document.getElementById('app_controls'),
-                ctrsStyle =document.getElementById('app_controls'),
+            var style = '',
+                styleEl = document.getElementById('range_styles'),
+                rand = 'range' + Math.round(Math.random() * 1000001),
+                rangeStyle = function (id, color) {
+                    var out = 'input[type=range]#'+ id;
+                        out += '::-webkit-slider-thumb {';
+                        out += 'background: '+ color +'}';
+                        out += '#'+ id;
+                        out += '{border-color: '+ color +'}';
+                    return out;
+                };
 
-                rangeBox = document.createElement('div'),
-                rangeValue = document.createElement('span'),
-                rangeLabel = document.createElement('label'),
-                nputRange = document.createElement('input'),
-                closeBtn =document.createElement('input');
+            this.pies.push({
+                id : rand,
+                label : this.nputLab,
+                value : this.nputVal,
+                color : this.nputCol,
+                style : rangeStyle(rand, this.nputCol)
+            });
 
-                rangeBox.setAttribute('class', 'ctr-range');
-                rangeBox.addEventListener('mousedown', function () {
-                    console.log('you just click the range box');
-                });
-
-                rangeValue.appendChild(document.createTextNode(this.nputVal));
-                rangeLabel.appendChild(document.createTextNode(this.nputLab));
-
-                nputRange.setAttribute('type', 'range');
-                nputRange.setAttribute('class', 'range-box');
-                nputRange.setAttribute('style', 'border-color:' + this.nputCol);
-                nputRange.addEventListener('mousedown', function () {
-                    console.log('start animating');
-                });
-                nputRange.addEventListener('mouseup', function () {
-                    console.log('stop animating');
-                });
-
-                closeBtn.setAttribute('type', 'button');
-                closeBtn.setAttribute('class', 'close-btn');
-                closeBtn.setAttribute('value', 'x');
-                closeBtn.addEventListener('click', function () {
-                    console.log('remove this range');
-                });
-
-                rangeBox.appendChild(rangeValue);
-                rangeBox.appendChild(rangeLabel);
-                rangeBox.appendChild(nputRange);
-                rangeBox.appendChild(closeBtn);
-
-                ctrsBox.appendChild(rangeBox);
-
-
-            console.log(this.nputLab + ', ' + this.nputVal + ', ' + this.nputCol);
+            for(i = 0; i < this.pies.length; i++) {
+                style += this.pies[i].style;
+            }
+            styleEl.innerHTML = style;
         },
         remove : function (nput) {
-            console.log('remove');
+            this.pies.splice(nput, 1);
         }
     }
 });
 
-vue.init();
+vue.draw();
