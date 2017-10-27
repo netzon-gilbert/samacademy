@@ -39,35 +39,43 @@ var vue = new Vue({
                 elPos['grands'] = [1320, 1450];
 
             function rentIncome() {
-                s.rentIncome = 0;
+                return Math.round(s.price * s.term * s.yeld /100);
+
             }
 
             function agencyFees() {
-                s.agencyFees = 0;
+                return Math.round(s.price * s.term * s.yeld * 0.25 /100);
+
             }
 
             function yearlyTotal() {
-                s.yearlyTotal = 0;
+                return Math.round(s.price * s.term * s.yeld * 2 /100);
+
             }
 
             function afterTerm() {
-                s.afterTerm = 0;
+                return Math.round(s.price * s.term * s.capital /100);
+
             }
 
             function profitOT() {
-                s.profitOT = 0;
+                return Math.round(s.price * s.yeld  /100);
+
             }
 
             function profitAT() {
-                s.profitAT = 0;
+                return Math.round(s.price * s.term * s.capital * 0.35 /100);
+
             }
 
             function grandPFT() {
-                s.grandPFT = 0;
+                return Math.round(s.price * s.term * s.capital * 0.20 /100);
+
             }
 
             function returnInvest() {
-                s.returnInvest = 0;
+                return Math.round(s.price * s.term * 0.05 /100);
+
             }
 
             function toggleView(className, show, collapse) {
@@ -94,10 +102,10 @@ var vue = new Vue({
                 s.term !== 0 &&
                 s.yeld !== 0
             ) {
-                rentIncome();
-                agencyFees();
-                yearlyTotal();
-                profitOT();
+                this.rentIncome = rentIncome();
+                this.agencyFees = agencyFees();
+                this.yearlyTotal = yearlyTotal();
+                this.profitOT = profitOT();
                 toggleView(rentsClass, true, viewCollapse);
             } else {
                 toggleView(rentsClass, false, viewCollapse);
@@ -109,8 +117,8 @@ var vue = new Vue({
                 s.capital !== 0 &&
                 s.term !== 0
             ) {
-                afterTerm();
-                profitAT();
+                this.afterTerm = afterTerm();
+                this.profitAT = profitAT();
                 toggleView(appresClass, true, viewCollapse);
             } else {
                 toggleView(appresClass, false, viewCollapse);
@@ -123,8 +131,8 @@ var vue = new Vue({
                 s.yeld !== 0 &&
                 s.capital !== 0
             ) {
-                grandPFT();
-                returnInvest();
+                this.grandPFT = grandPFT();
+                this.returnInvest = returnInvest();
                 viewCollapse = false;
                 toggleView(grandsClass, true, viewCollapse);
             } else {
