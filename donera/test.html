@@ -21,15 +21,14 @@
             </div>
              <div class="app-win2 app-wins" id="" >
                 <div class="app-controls" id="app_controls">
-                    <div class="ctr-range" v-for="(pie, key) in pies">
+                    <div @mousedown="clicked(true)" @mouseup="clicked(false)" class="ctr-range" v-for="(pie, key) in pies">
                         <span >{{ pie.value }}</span>
                         <label>{{ pie.label }}</label>
 
                         <input type="range" class="range-box"
-                        @mousedown="render=true" @mouseup="render=false"
-                        v-model="pie.value" :id="pie.id">
+                         v-model="pie.value" :id="pie.id" />
 
-                        <input type="button" class="close-btn" @click="remove(key)" value="x">
+                        <input type="button" class="close-btn" @click="remove(key)" value="x" />
                     </div>
                 </div>
                 <div class="app-tool">

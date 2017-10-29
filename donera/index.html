@@ -4,7 +4,6 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/styles.css" />
-        <script type="text/javascript" src="js/index.js" ></script>
     </head>
 
     <body>
@@ -21,18 +20,27 @@
                 </canvas>
             </div>
              <div class="app-win2 app-wins" id="" >
-                <div class="app-controls" id="app-controls">
+                <div class="app-controls" id="app_controls">
+                    <div @mousedown="clicked(true)" @mouseup="clicked(false)" class="ctr-range" v-for="(pie, key) in pies">
+                        <span >{{ pie.value }}</span>
+                        <label>{{ pie.label }}</label>
+
+                        <input type="range" class="range-box"
+                         v-model="pie.value" :id="pie.id" />
+
+                        <input type="button" class="close-btn" @click="remove(key)" value="x" />
+                    </div>
                 </div>
                 <div class="app-tool">
                     <label>Label</label>
-                    <input type="text" class="inputs" id="label" /><br /><br />
+                    <input type="text" class="inputs" id="label" v-model="nputLab" /><br /><br />
 
                     <label>Value</label>
-                    <input type="number" class="inputs" id="value" /><br /><br />
+                    <input type="number" class="inputs" id="value" v-model="nputVal" /><br /><br />
 
                     <label>Color</label>
-                    <input type="color" id="color" /><br /><br />
-                    <input type="button" id="add" value="add" />
+                    <input type="color" id="color" v-model="nputCol" /><br /><br />
+                    <input type="button" id="add" value="add" v-on:click="add()" />
                 </div>
             </div>
         </div>
@@ -40,7 +48,7 @@
         <style type="text/css" rel="stylesheet" id="range_styles">
         </style>
 
-        <script type="text/javascript" >
-        </script>
+        <script type="text/javascript" src="js/vue.js" ></script>
+        <script type="text/javascript" src="js/test.js" ></script>
     </body>
 </html>

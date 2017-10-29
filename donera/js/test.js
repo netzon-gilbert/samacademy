@@ -1,13 +1,11 @@
 var vue = new Vue({
     el : ".app",
-    data : function() {
-        return {
-            render : false,
-            nputLab : '',
-            nputVal : '',
-            nputCol : '#000000',
-            pies : []
-        }
+    data : {
+        render : false,
+        nputLab : '',
+        nputVal : '',
+        nputCol : '#000000',
+        pies : []
     },
     methods : {
         draw : function () {
@@ -61,11 +59,11 @@ var vue = new Vue({
                 semiCircles(percent, rotation, s.pies[i].color);
                 rotation += percent;
             }
-            setTimeout(function () {
-                if(s.render){
-                    s.draw();
-                }
-            }, 40);
+            if(this.render){
+                setTimeout(function () {
+                    arguments[0].draw();
+                }, 60, this);
+            }
         },
         add : function () {
             var style = '',
@@ -93,11 +91,41 @@ var vue = new Vue({
             }
             styleEl.innerHTML = style;
             this.draw();
+            this.export();
         },
         remove : function (nput) {
             this.pies.splice(nput, 1);
+        },
+        clicked : function (nput) {
+            if (nput) {
+                this.render = true;
+                this.draw();
+            } else {
+                this.render = false;
+                this.export();
+            }
+        },
+        export : function () {
+            console.log();
+            if (typeof(Storage) !== "undefined") {
+                localStorage.setItem('pies', JSON.stringify(this.pies));
+            } else {
+                console.log("error: local storage not supported!");
+            }
+        },
+        import : function () {
+            var style = document.getElementById('range_styles');
+
+            if (localStorage.getItem('pies')) {
+                this.pies = JSON.parse(localStorage.getItem('pies'));
+                for (var i = 0; i < this.pies.length; i++) {
+                    style.innerHTML += this.pies[i].style;
+                }
+            }
+
+            this.draw();
         }
     }
 });
 
-vue.draw();
+vue.import();
