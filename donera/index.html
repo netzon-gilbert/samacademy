@@ -14,18 +14,18 @@
         </header>
         <div class="app" id="" >
              <div class="app-win1 app-wins" id="" >
-                <span id="out_container"><span id="out_value">0</span> KR</span>
+                <span id="out_container"><span id="out_value">{{ display }}</span> KR</span>
                 <h1>Set the amount you'd<br /> like to donate.</h1>
                 <canvas id="chart" width="200" height="200">
                 </canvas>
             </div>
              <div class="app-win2 app-wins" id="" >
                 <div class="app-controls" id="app_controls">
-                    <div @mousedown="clicked(true)" @mouseup="clicked(false)" class="ctr-range" v-for="(pie, key) in pies">
+                    <div class="ctr-range" v-for="(pie, key) in pies">
                         <span >{{ pie.value }}</span>
                         <label>{{ pie.label }}</label>
 
-                        <input type="range" class="range-box"
+                        <input @mousedown="clicked(key, true)" @mouseup="clicked(key, false)" type="range" class="range-box"
                          v-model="pie.value" :id="pie.id" />
 
                         <input type="button" class="close-btn" @click="remove(key)" value="x" />
@@ -49,6 +49,6 @@
         </style>
 
         <script type="text/javascript" src="js/vue.js" ></script>
-        <script type="text/javascript" src="js/test.js" ></script>
+        <script type="text/javascript" src="js/index.js" ></script>
     </body>
 </html>

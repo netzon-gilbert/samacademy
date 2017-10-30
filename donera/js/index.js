@@ -5,7 +5,9 @@ var vue = new Vue({
         nputLab : '',
         nputVal : '',
         nputCol : '#000000',
-        pies : []
+        pies : [],
+        display : 0,
+        clickedIndex : 0,
     },
     methods : {
         draw : function () {
@@ -64,6 +66,8 @@ var vue = new Vue({
                     arguments[0].draw();
                 }, 60, this);
             }
+            this.display = this.pies[this.clickedIndex].value;
+
         },
         add : function () {
             var style = '',
@@ -92,11 +96,12 @@ var vue = new Vue({
             styleEl.innerHTML = style;
             this.draw();
             this.export();
+            this.clickedIndex = this.pies.length;
         },
         remove : function (nput) {
             this.pies.splice(nput, 1);
         },
-        clicked : function (nput) {
+        clicked : function (key, nput) {
             if (nput) {
                 this.render = true;
                 this.draw();
@@ -104,6 +109,7 @@ var vue = new Vue({
                 this.render = false;
                 this.export();
             }
+            this.clickedIndex = key;
         },
         export : function () {
             console.log();
@@ -122,7 +128,9 @@ var vue = new Vue({
                     style.innerHTML += this.pies[i].style;
                 }
             }
-
+            if( this.pies.length >= 1) {
+                this.clickedIndex = this.pies.length-1;
+            }
             this.draw();
         }
     }
