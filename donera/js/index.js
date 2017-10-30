@@ -49,6 +49,7 @@ var vue = new Vue({
                 canv.stroke();
                 canv.restore();
             }
+
             canv.clearRect(0, 0, 200, 200);
             circles();
 
@@ -66,7 +67,13 @@ var vue = new Vue({
                     arguments[0].draw();
                 }, 60, this);
             }
-            this.display = this.pies[this.clickedIndex].value;
+            if (this.pies.length >= 1) {
+                try {
+                    this.display = this.pies[this.clickedIndex].value;
+                } catch (e) {}
+            } else {
+                this.display = 0;
+            }
 
         },
         add : function () {
@@ -93,13 +100,20 @@ var vue = new Vue({
             for(i = 0; i < this.pies.length; i++) {
                 style += this.pies[i].style;
             }
+
             styleEl.innerHTML = style;
+            this.clickedIndex = this.pies.length-1;
             this.draw();
             this.export();
-            this.clickedIndex = this.pies.length;
+
         },
         remove : function (nput) {
             this.pies.splice(nput, 1);
+            this.export();
+            if (this.pies.length >= 1) {
+                this.clickedIndex = this.pies.length - 1;
+            }
+            this.draw();
         },
         clicked : function (key, nput) {
             if (nput) {
@@ -128,9 +142,11 @@ var vue = new Vue({
                     style.innerHTML += this.pies[i].style;
                 }
             }
+
             if( this.pies.length >= 1) {
                 this.clickedIndex = this.pies.length-1;
             }
+
             this.draw();
         }
     }
